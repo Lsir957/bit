@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itcast.dao.BuyListMapper">
+  <resultMap id="BaseResultMap" type="com.itcast.bean.BuyList">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="num" jdbcType="DECIMAL" property="num" />
+    <result column="day" jdbcType="INTEGER" property="day" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="type" jdbcType="BIT" property="type" />
+    <result column="total" jdbcType="DECIMAL" property="total" />
+    <result column="all_day" jdbcType="INTEGER" property="allDay" />
+    <result column="token_id" jdbcType="INTEGER" property="tokenId" />
+    <result column="shop_id" jdbcType="INTEGER" property="shopId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="token_num" jdbcType="DECIMAL" property="tokenNum" />
+    <result column="sl" jdbcType="REAL" property="sl" />
+    <result column="day_sy" jdbcType="DECIMAL" property="daySy" />
+    <result column="mini" jdbcType="DECIMAL" property="mini" />
+    <result column="max" jdbcType="DECIMAL" property="max" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, uid, num, day, time, type, total, all_day, token_id, shop_id, status, end_time, 
+    token_num, sl, day_sy, mini, max
+  </sql>
+  <select id="selectByExample" parameterType="com.itcast.bean.BuyListExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from buylist
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from buylist
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from buylist
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.itcast.bean.BuyListExample">
+    delete from buylist
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.itcast.bean.BuyList">
+    insert into buylist (id, uid, num, 
+      day, time, type, total, 
+      all_day, token_id, shop_id, 
+      status, end_time, token_num, 
+      sl, day_sy, mini, max
+      )
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{num,jdbcType=DECIMAL}, 
+      #{day,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, #{type,jdbcType=BIT}, #{total,jdbcType=DECIMAL}, 
+      #{allDay,jdbcType=INTEGER}, #{tokenId,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{endTime,jdbcType=TIMESTAMP}, #{tokenNum,jdbcType=DECIMAL}, 
+      #{sl,jdbcType=REAL}, #{daySy,jdbcType=DECIMAL}, #{mini,jdbcType=DECIMAL}, #{max,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.itcast.bean.BuyList">
+    insert into buylist
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="day != null">
+        day,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="allDay != null">
+        all_day,
+      </if>
+      <if test="tokenId != null">
+        token_id,
+      </if>
+      <if test="shopId != null">
+        shop_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="tokenNum != null">
+        token_num,
+      </if>
+      <if test="sl != null">
+        sl,
+      </if>
+      <if test="daySy != null">
+        day_sy,
+      </if>
+      <if test="mini != null">
+        mini,
+      </if>
+      <if test="max != null">
+        max,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=DECIMAL},
+      </if>
+      <if test="day != null">
+        #{day,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=BIT},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="allDay != null">
+        #{allDay,jdbcType=INTEGER},
+      </if>
+      <if test="tokenId != null">
+        #{tokenId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null">
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tokenNum != null">
+        #{tokenNum,jdbcType=DECIMAL},
+      </if>
+      <if test="sl != null">
+        #{sl,jdbcType=REAL},
+      </if>
+      <if test="daySy != null">
+        #{daySy,jdbcType=DECIMAL},
+      </if>
+      <if test="mini != null">
+        #{mini,jdbcType=DECIMAL},
+      </if>
+      <if test="max != null">
+        #{max,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.itcast.bean.BuyListExample" resultType="java.lang.Long">
+    select count(*) from buylist
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update buylist
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.uid != null">
+        uid = #{record.uid,jdbcType=INTEGER},
+      </if>
+      <if test="record.num != null">
+        num = #{record.num,jdbcType=DECIMAL},
+      </if>
+      <if test="record.day != null">
+        day = #{record.day,jdbcType=INTEGER},
+      </if>
+      <if test="record.time != null">
+        time = #{record.time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=BIT},
+      </if>
+      <if test="record.total != null">
+        total = #{record.total,jdbcType=DECIMAL},
+      </if>
+      <if test="record.allDay != null">
+        all_day = #{record.allDay,jdbcType=INTEGER},
+      </if>
+      <if test="record.tokenId != null">
+        token_id = #{record.tokenId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopId != null">
+        shop_id = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.endTime != null">
+        end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.tokenNum != null">
+        token_num = #{record.tokenNum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sl != null">
+        sl = #{record.sl,jdbcType=REAL},
+      </if>
+      <if test="record.daySy != null">
+        day_sy = #{record.daySy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mini != null">
+        mini = #{record.mini,jdbcType=DECIMAL},
+      </if>
+      <if test="record.max != null">
+        max = #{record.max,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update buylist
+    set id = #{record.id,jdbcType=INTEGER},
+      uid = #{record.uid,jdbcType=INTEGER},
+      num = #{record.num,jdbcType=DECIMAL},
+      day = #{record.day,jdbcType=INTEGER},
+      time = #{record.time,jdbcType=TIMESTAMP},
+      type = #{record.type,jdbcType=BIT},
+      total = #{record.total,jdbcType=DECIMAL},
+      all_day = #{record.allDay,jdbcType=INTEGER},
+      token_id = #{record.tokenId,jdbcType=INTEGER},
+      shop_id = #{record.shopId,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      token_num = #{record.tokenNum,jdbcType=DECIMAL},
+      sl = #{record.sl,jdbcType=REAL},
+      day_sy = #{record.daySy,jdbcType=DECIMAL},
+      mini = #{record.mini,jdbcType=DECIMAL},
+      max = #{record.max,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itcast.bean.BuyList">
+    update buylist
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=DECIMAL},
+      </if>
+      <if test="day != null">
+        day = #{day,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=BIT},
+      </if>
+      <if test="total != null">
+        total = #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="allDay != null">
+        all_day = #{allDay,jdbcType=INTEGER},
+      </if>
+      <if test="tokenId != null">
+        token_id = #{tokenId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null">
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tokenNum != null">
+        token_num = #{tokenNum,jdbcType=DECIMAL},
+      </if>
+      <if test="sl != null">
+        sl = #{sl,jdbcType=REAL},
+      </if>
+      <if test="daySy != null">
+        day_sy = #{daySy,jdbcType=DECIMAL},
+      </if>
+      <if test="mini != null">
+        mini = #{mini,jdbcType=DECIMAL},
+      </if>
+      <if test="max != null">
+        max = #{max,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itcast.bean.BuyList">
+    update buylist
+    set uid = #{uid,jdbcType=INTEGER},
+      num = #{num,jdbcType=DECIMAL},
+      day = #{day,jdbcType=INTEGER},
+      time = #{time,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=BIT},
+      total = #{total,jdbcType=DECIMAL},
+      all_day = #{allDay,jdbcType=INTEGER},
+      token_id = #{tokenId,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      token_num = #{tokenNum,jdbcType=DECIMAL},
+      sl = #{sl,jdbcType=REAL},
+      day_sy = #{daySy,jdbcType=DECIMAL},
+      mini = #{mini,jdbcType=DECIMAL},
+      max = #{max,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

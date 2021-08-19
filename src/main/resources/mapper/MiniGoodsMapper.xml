@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itcast.dao.MiniGoodsMapper">
+  <resultMap id="BaseResultMap" type="com.itcast.bean.MiniGoods">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="standard" jdbcType="VARCHAR" property="standard" />
+    <result column="cover_path" jdbcType="VARCHAR" property="coverPath" />
+    <result column="photo_path_1" jdbcType="VARCHAR" property="photoPath1" />
+    <result column="photo_path_2" jdbcType="VARCHAR" property="photoPath2" />
+    <result column="photo_path_3" jdbcType="VARCHAR" property="photoPath3" />
+    <result column="click_count" jdbcType="INTEGER" property="clickCount" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="is_best" jdbcType="TINYINT" property="isBest" />
+    <result column="is_new" jdbcType="TINYINT" property="isNew" />
+    <result column="is_hot" jdbcType="TINYINT" property="isHot" />
+    <result column="sell_num" jdbcType="INTEGER" property="sellNum" />
+    <result column="createtime" jdbcType="INTEGER" property="createtime" />
+    <result column="score_num" jdbcType="TINYINT" property="scoreNum" />
+    <result column="score" jdbcType="INTEGER" property="score" />
+    <result column="yhui" jdbcType="DECIMAL" property="yhui" />
+    <result column="zhui" jdbcType="DECIMAL" property="zhui" />
+    <result column="score2" jdbcType="DECIMAL" property="score2" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.itcast.bean.MiniGoodsWithBLOBs">
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, uid, uuid, name, num, price, standard, cover_path, photo_path_1, photo_path_2, 
+    photo_path_3, click_count, status, is_best, is_new, is_hot, sell_num, createtime, 
+    score_num, score, yhui, zhui, score2
+  </sql>
+  <sql id="Blob_Column_List">
+    description, content
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.itcast.bean.MiniGoodsExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from mini_goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.itcast.bean.MiniGoodsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mini_goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from mini_goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mini_goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.itcast.bean.MiniGoodsExample">
+    delete from mini_goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.itcast.bean.MiniGoodsWithBLOBs">
+    insert into mini_goods (id, uid, uuid, 
+      name, num, price, standard, 
+      cover_path, photo_path_1, photo_path_2, 
+      photo_path_3, click_count, status, 
+      is_best, is_new, is_hot, 
+      sell_num, createtime, score_num, 
+      score, yhui, zhui, 
+      score2, description, content
+      )
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{uuid,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{num,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, #{standard,jdbcType=VARCHAR}, 
+      #{coverPath,jdbcType=VARCHAR}, #{photoPath1,jdbcType=VARCHAR}, #{photoPath2,jdbcType=VARCHAR}, 
+      #{photoPath3,jdbcType=VARCHAR}, #{clickCount,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, 
+      #{isBest,jdbcType=TINYINT}, #{isNew,jdbcType=TINYINT}, #{isHot,jdbcType=TINYINT}, 
+      #{sellNum,jdbcType=INTEGER}, #{createtime,jdbcType=INTEGER}, #{scoreNum,jdbcType=TINYINT}, 
+      #{score,jdbcType=INTEGER}, #{yhui,jdbcType=DECIMAL}, #{zhui,jdbcType=DECIMAL}, 
+      #{score2,jdbcType=DECIMAL}, #{description,jdbcType=LONGVARCHAR}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.itcast.bean.MiniGoodsWithBLOBs">
+    insert into mini_goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="standard != null">
+        standard,
+      </if>
+      <if test="coverPath != null">
+        cover_path,
+      </if>
+      <if test="photoPath1 != null">
+        photo_path_1,
+      </if>
+      <if test="photoPath2 != null">
+        photo_path_2,
+      </if>
+      <if test="photoPath3 != null">
+        photo_path_3,
+      </if>
+      <if test="clickCount != null">
+        click_count,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="isBest != null">
+        is_best,
+      </if>
+      <if test="isNew != null">
+        is_new,
+      </if>
+      <if test="isHot != null">
+        is_hot,
+      </if>
+      <if test="sellNum != null">
+        sell_num,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="scoreNum != null">
+        score_num,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+      <if test="yhui != null">
+        yhui,
+      </if>
+      <if test="zhui != null">
+        zhui,
+      </if>
+      <if test="score2 != null">
+        score2,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="standard != null">
+        #{standard,jdbcType=VARCHAR},
+      </if>
+      <if test="coverPath != null">
+        #{coverPath,jdbcType=VARCHAR},
+      </if>
+      <if test="photoPath1 != null">
+        #{photoPath1,jdbcType=VARCHAR},
+      </if>
+      <if test="photoPath2 != null">
+        #{photoPath2,jdbcType=VARCHAR},
+      </if>
+      <if test="photoPath3 != null">
+        #{photoPath3,jdbcType=VARCHAR},
+      </if>
+      <if test="clickCount != null">
+        #{clickCount,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="isBest != null">
+        #{isBest,jdbcType=TINYINT},
+      </if>
+      <if test="isNew != null">
+        #{isNew,jdbcType=TINYINT},
+      </if>
+      <if test="isHot != null">
+        #{isHot,jdbcType=TINYINT},
+      </if>
+      <if test="sellNum != null">
+        #{sellNum,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=INTEGER},
+      </if>
+      <if test="scoreNum != null">
+        #{scoreNum,jdbcType=TINYINT},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="yhui != null">
+        #{yhui,jdbcType=DECIMAL},
+      </if>
+      <if test="zhui != null">
+        #{zhui,jdbcType=DECIMAL},
+      </if>
+      <if test="score2 != null">
+        #{score2,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.itcast.bean.MiniGoodsExample" resultType="java.lang.Long">
+    select count(*) from mini_goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update mini_goods
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.uid != null">
+        uid = #{record.uid,jdbcType=INTEGER},
+      </if>
+      <if test="record.uuid != null">
+        uuid = #{record.uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.num != null">
+        num = #{record.num,jdbcType=INTEGER},
+      </if>
+      <if test="record.price != null">
+        price = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.standard != null">
+        standard = #{record.standard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coverPath != null">
+        cover_path = #{record.coverPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photoPath1 != null">
+        photo_path_1 = #{record.photoPath1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photoPath2 != null">
+        photo_path_2 = #{record.photoPath2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photoPath3 != null">
+        photo_path_3 = #{record.photoPath3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clickCount != null">
+        click_count = #{record.clickCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.isBest != null">
+        is_best = #{record.isBest,jdbcType=TINYINT},
+      </if>
+      <if test="record.isNew != null">
+        is_new = #{record.isNew,jdbcType=TINYINT},
+      </if>
+      <if test="record.isHot != null">
+        is_hot = #{record.isHot,jdbcType=TINYINT},
+      </if>
+      <if test="record.sellNum != null">
+        sell_num = #{record.sellNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.createtime != null">
+        createtime = #{record.createtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.scoreNum != null">
+        score_num = #{record.scoreNum,jdbcType=TINYINT},
+      </if>
+      <if test="record.score != null">
+        score = #{record.score,jdbcType=INTEGER},
+      </if>
+      <if test="record.yhui != null">
+        yhui = #{record.yhui,jdbcType=DECIMAL},
+      </if>
+      <if test="record.zhui != null">
+        zhui = #{record.zhui,jdbcType=DECIMAL},
+      </if>
+      <if test="record.score2 != null">
+        score2 = #{record.score2,jdbcType=DECIMAL},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update mini_goods
+    set id = #{record.id,jdbcType=INTEGER},
+      uid = #{record.uid,jdbcType=INTEGER},
+      uuid = #{record.uuid,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      num = #{record.num,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=DECIMAL},
+      standard = #{record.standard,jdbcType=VARCHAR},
+      cover_path = #{record.coverPath,jdbcType=VARCHAR},
+      photo_path_1 = #{record.photoPath1,jdbcType=VARCHAR},
+      photo_path_2 = #{record.photoPath2,jdbcType=VARCHAR},
+      photo_path_3 = #{record.photoPath3,jdbcType=VARCHAR},
+      click_count = #{record.clickCount,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=TINYINT},
+      is_best = #{record.isBest,jdbcType=TINYINT},
+      is_new = #{record.isNew,jdbcType=TINYINT},
+      is_hot = #{record.isHot,jdbcType=TINYINT},
+      sell_num = #{record.sellNum,jdbcType=INTEGER},
+      createtime = #{record.createtime,jdbcType=INTEGER},
+      score_num = #{record.scoreNum,jdbcType=TINYINT},
+      score = #{record.score,jdbcType=INTEGER},
+      yhui = #{record.yhui,jdbcType=DECIMAL},
+      zhui = #{record.zhui,jdbcType=DECIMAL},
+      score2 = #{record.score2,jdbcType=DECIMAL},
+      description = #{record.description,jdbcType=LONGVARCHAR},
+      content = #{record.content,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update mini_goods
+    set id = #{record.id,jdbcType=INTEGER},
+      uid = #{record.uid,jdbcType=INTEGER},
+      uuid = #{record.uuid,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      num = #{record.num,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=DECIMAL},
+      standard = #{record.standard,jdbcType=VARCHAR},
+      cover_path = #{record.coverPath,jdbcType=VARCHAR},
+      photo_path_1 = #{record.photoPath1,jdbcType=VARCHAR},
+      photo_path_2 = #{record.photoPath2,jdbcType=VARCHAR},
+      photo_path_3 = #{record.photoPath3,jdbcType=VARCHAR},
+      click_count = #{record.clickCount,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=TINYINT},
+      is_best = #{record.isBest,jdbcType=TINYINT},
+      is_new = #{record.isNew,jdbcType=TINYINT},
+      is_hot = #{record.isHot,jdbcType=TINYINT},
+      sell_num = #{record.sellNum,jdbcType=INTEGER},
+      createtime = #{record.createtime,jdbcType=INTEGER},
+      score_num = #{record.scoreNum,jdbcType=TINYINT},
+      score = #{record.score,jdbcType=INTEGER},
+      yhui = #{record.yhui,jdbcType=DECIMAL},
+      zhui = #{record.zhui,jdbcType=DECIMAL},
+      score2 = #{record.score2,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itcast.bean.MiniGoodsWithBLOBs">
+    update mini_goods
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="standard != null">
+        standard = #{standard,jdbcType=VARCHAR},
+      </if>
+      <if test="coverPath != null">
+        cover_path = #{coverPath,jdbcType=VARCHAR},
+      </if>
+      <if test="photoPath1 != null">
+        photo_path_1 = #{photoPath1,jdbcType=VARCHAR},
+      </if>
+      <if test="photoPath2 != null">
+        photo_path_2 = #{photoPath2,jdbcType=VARCHAR},
+      </if>
+      <if test="photoPath3 != null">
+        photo_path_3 = #{photoPath3,jdbcType=VARCHAR},
+      </if>
+      <if test="clickCount != null">
+        click_count = #{clickCount,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="isBest != null">
+        is_best = #{isBest,jdbcType=TINYINT},
+      </if>
+      <if test="isNew != null">
+        is_new = #{isNew,jdbcType=TINYINT},
+      </if>
+      <if test="isHot != null">
+        is_hot = #{isHot,jdbcType=TINYINT},
+      </if>
+      <if test="sellNum != null">
+        sell_num = #{sellNum,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=INTEGER},
+      </if>
+      <if test="scoreNum != null">
+        score_num = #{scoreNum,jdbcType=TINYINT},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="yhui != null">
+        yhui = #{yhui,jdbcType=DECIMAL},
+      </if>
+      <if test="zhui != null">
+        zhui = #{zhui,jdbcType=DECIMAL},
+      </if>
+      <if test="score2 != null">
+        score2 = #{score2,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.itcast.bean.MiniGoodsWithBLOBs">
+    update mini_goods
+    set uid = #{uid,jdbcType=INTEGER},
+      uuid = #{uuid,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      num = #{num,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      standard = #{standard,jdbcType=VARCHAR},
+      cover_path = #{coverPath,jdbcType=VARCHAR},
+      photo_path_1 = #{photoPath1,jdbcType=VARCHAR},
+      photo_path_2 = #{photoPath2,jdbcType=VARCHAR},
+      photo_path_3 = #{photoPath3,jdbcType=VARCHAR},
+      click_count = #{clickCount,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      is_best = #{isBest,jdbcType=TINYINT},
+      is_new = #{isNew,jdbcType=TINYINT},
+      is_hot = #{isHot,jdbcType=TINYINT},
+      sell_num = #{sellNum,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=INTEGER},
+      score_num = #{scoreNum,jdbcType=TINYINT},
+      score = #{score,jdbcType=INTEGER},
+      yhui = #{yhui,jdbcType=DECIMAL},
+      zhui = #{zhui,jdbcType=DECIMAL},
+      score2 = #{score2,jdbcType=DECIMAL},
+      description = #{description,jdbcType=LONGVARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itcast.bean.MiniGoods">
+    update mini_goods
+    set uid = #{uid,jdbcType=INTEGER},
+      uuid = #{uuid,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      num = #{num,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      standard = #{standard,jdbcType=VARCHAR},
+      cover_path = #{coverPath,jdbcType=VARCHAR},
+      photo_path_1 = #{photoPath1,jdbcType=VARCHAR},
+      photo_path_2 = #{photoPath2,jdbcType=VARCHAR},
+      photo_path_3 = #{photoPath3,jdbcType=VARCHAR},
+      click_count = #{clickCount,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      is_best = #{isBest,jdbcType=TINYINT},
+      is_new = #{isNew,jdbcType=TINYINT},
+      is_hot = #{isHot,jdbcType=TINYINT},
+      sell_num = #{sellNum,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=INTEGER},
+      score_num = #{scoreNum,jdbcType=TINYINT},
+      score = #{score,jdbcType=INTEGER},
+      yhui = #{yhui,jdbcType=DECIMAL},
+      zhui = #{zhui,jdbcType=DECIMAL},
+      score2 = #{score2,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

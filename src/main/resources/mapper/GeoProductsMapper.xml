@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itcast.dao.GeoProductsMapper">
+  <resultMap id="BaseResultMap" type="com.itcast.bean.GeoProducts">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="title_en" jdbcType="VARCHAR" property="titleEn" />
+    <result column="day" jdbcType="INTEGER" property="day" />
+    <result column="day_out" jdbcType="DECIMAL" property="dayOut" />
+    <result column="buy_price" jdbcType="DECIMAL" property="buyPrice" />
+    <result column="usdt_price" jdbcType="DECIMAL" property="usdtPrice" />
+    <result column="bed_price" jdbcType="DECIMAL" property="bedPrice" />
+    <result column="max_kucun" jdbcType="INTEGER" property="maxKucun" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="is_show" jdbcType="INTEGER" property="isShow" />
+    <result column="pay_type" jdbcType="INTEGER" property="payType" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.itcast.bean.GeoProducts">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, title, title_en, day, day_out, buy_price, usdt_price, bed_price, max_kucun, status, 
+    is_show, pay_type
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.itcast.bean.GeoProductsExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from geo_products
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.itcast.bean.GeoProductsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from geo_products
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from geo_products
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from geo_products
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.itcast.bean.GeoProductsExample">
+    delete from geo_products
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.itcast.bean.GeoProducts">
+    insert into geo_products (id, title, title_en, 
+      day, day_out, buy_price, 
+      usdt_price, bed_price, max_kucun, 
+      status, is_show, pay_type, 
+      content)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{titleEn,jdbcType=VARCHAR}, 
+      #{day,jdbcType=INTEGER}, #{dayOut,jdbcType=DECIMAL}, #{buyPrice,jdbcType=DECIMAL}, 
+      #{usdtPrice,jdbcType=DECIMAL}, #{bedPrice,jdbcType=DECIMAL}, #{maxKucun,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{isShow,jdbcType=INTEGER}, #{payType,jdbcType=INTEGER}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.itcast.bean.GeoProducts">
+    insert into geo_products
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="titleEn != null">
+        title_en,
+      </if>
+      <if test="day != null">
+        day,
+      </if>
+      <if test="dayOut != null">
+        day_out,
+      </if>
+      <if test="buyPrice != null">
+        buy_price,
+      </if>
+      <if test="usdtPrice != null">
+        usdt_price,
+      </if>
+      <if test="bedPrice != null">
+        bed_price,
+      </if>
+      <if test="maxKucun != null">
+        max_kucun,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="isShow != null">
+        is_show,
+      </if>
+      <if test="payType != null">
+        pay_type,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="titleEn != null">
+        #{titleEn,jdbcType=VARCHAR},
+      </if>
+      <if test="day != null">
+        #{day,jdbcType=INTEGER},
+      </if>
+      <if test="dayOut != null">
+        #{dayOut,jdbcType=DECIMAL},
+      </if>
+      <if test="buyPrice != null">
+        #{buyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="usdtPrice != null">
+        #{usdtPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="bedPrice != null">
+        #{bedPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="maxKucun != null">
+        #{maxKucun,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isShow != null">
+        #{isShow,jdbcType=INTEGER},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.itcast.bean.GeoProductsExample" resultType="java.lang.Long">
+    select count(*) from geo_products
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update geo_products
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.titleEn != null">
+        title_en = #{record.titleEn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.day != null">
+        day = #{record.day,jdbcType=INTEGER},
+      </if>
+      <if test="record.dayOut != null">
+        day_out = #{record.dayOut,jdbcType=DECIMAL},
+      </if>
+      <if test="record.buyPrice != null">
+        buy_price = #{record.buyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.usdtPrice != null">
+        usdt_price = #{record.usdtPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bedPrice != null">
+        bed_price = #{record.bedPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.maxKucun != null">
+        max_kucun = #{record.maxKucun,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.isShow != null">
+        is_show = #{record.isShow,jdbcType=INTEGER},
+      </if>
+      <if test="record.payType != null">
+        pay_type = #{record.payType,jdbcType=INTEGER},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update geo_products
+    set id = #{record.id,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      title_en = #{record.titleEn,jdbcType=VARCHAR},
+      day = #{record.day,jdbcType=INTEGER},
+      day_out = #{record.dayOut,jdbcType=DECIMAL},
+      buy_price = #{record.buyPrice,jdbcType=DECIMAL},
+      usdt_price = #{record.usdtPrice,jdbcType=DECIMAL},
+      bed_price = #{record.bedPrice,jdbcType=DECIMAL},
+      max_kucun = #{record.maxKucun,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      is_show = #{record.isShow,jdbcType=INTEGER},
+      pay_type = #{record.payType,jdbcType=INTEGER},
+      content = #{record.content,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update geo_products
+    set id = #{record.id,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      title_en = #{record.titleEn,jdbcType=VARCHAR},
+      day = #{record.day,jdbcType=INTEGER},
+      day_out = #{record.dayOut,jdbcType=DECIMAL},
+      buy_price = #{record.buyPrice,jdbcType=DECIMAL},
+      usdt_price = #{record.usdtPrice,jdbcType=DECIMAL},
+      bed_price = #{record.bedPrice,jdbcType=DECIMAL},
+      max_kucun = #{record.maxKucun,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      is_show = #{record.isShow,jdbcType=INTEGER},
+      pay_type = #{record.payType,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itcast.bean.GeoProducts">
+    update geo_products
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="titleEn != null">
+        title_en = #{titleEn,jdbcType=VARCHAR},
+      </if>
+      <if test="day != null">
+        day = #{day,jdbcType=INTEGER},
+      </if>
+      <if test="dayOut != null">
+        day_out = #{dayOut,jdbcType=DECIMAL},
+      </if>
+      <if test="buyPrice != null">
+        buy_price = #{buyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="usdtPrice != null">
+        usdt_price = #{usdtPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="bedPrice != null">
+        bed_price = #{bedPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="maxKucun != null">
+        max_kucun = #{maxKucun,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isShow != null">
+        is_show = #{isShow,jdbcType=INTEGER},
+      </if>
+      <if test="payType != null">
+        pay_type = #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.itcast.bean.GeoProducts">
+    update geo_products
+    set title = #{title,jdbcType=VARCHAR},
+      title_en = #{titleEn,jdbcType=VARCHAR},
+      day = #{day,jdbcType=INTEGER},
+      day_out = #{dayOut,jdbcType=DECIMAL},
+      buy_price = #{buyPrice,jdbcType=DECIMAL},
+      usdt_price = #{usdtPrice,jdbcType=DECIMAL},
+      bed_price = #{bedPrice,jdbcType=DECIMAL},
+      max_kucun = #{maxKucun,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      is_show = #{isShow,jdbcType=INTEGER},
+      pay_type = #{payType,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itcast.bean.GeoProducts">
+    update geo_products
+    set title = #{title,jdbcType=VARCHAR},
+      title_en = #{titleEn,jdbcType=VARCHAR},
+      day = #{day,jdbcType=INTEGER},
+      day_out = #{dayOut,jdbcType=DECIMAL},
+      buy_price = #{buyPrice,jdbcType=DECIMAL},
+      usdt_price = #{usdtPrice,jdbcType=DECIMAL},
+      bed_price = #{bedPrice,jdbcType=DECIMAL},
+      max_kucun = #{maxKucun,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      is_show = #{isShow,jdbcType=INTEGER},
+      pay_type = #{payType,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

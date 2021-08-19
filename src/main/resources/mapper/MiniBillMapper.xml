@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itcast.dao.MiniBillMapper">
+  <resultMap id="BaseResultMap" type="com.itcast.bean.MiniBill">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="coinid" jdbcType="INTEGER" property="coinid" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="typeStr" jdbcType="VARCHAR" property="typestr" />
+    <result column="ctime" jdbcType="VARCHAR" property="ctime" />
+    <result column="num" jdbcType="DECIMAL" property="num" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="tradeid" jdbcType="INTEGER" property="tradeid" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="hash" jdbcType="VARCHAR" property="hash" />
+    <result column="poundage" jdbcType="DECIMAL" property="poundage" />
+    <result column="status" jdbcType="BIT" property="status" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, uid, coinid, type, typeStr, ctime, num, amount, tradeid, time, hash, poundage, 
+    status
+  </sql>
+  <select id="selectByExample" parameterType="com.itcast.bean.MiniBillExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mini_bill
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mini_bill
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from mini_bill
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.itcast.bean.MiniBillExample">
+    delete from mini_bill
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.itcast.bean.MiniBill">
+    insert into mini_bill (id, uid, coinid, 
+      type, typeStr, ctime, 
+      num, amount, tradeid, 
+      time, hash, poundage, 
+      status)
+    values (#{id,jdbcType=BIGINT}, #{uid,jdbcType=INTEGER}, #{coinid,jdbcType=INTEGER}, 
+      #{type,jdbcType=INTEGER}, #{typestr,jdbcType=VARCHAR}, #{ctime,jdbcType=VARCHAR}, 
+      #{num,jdbcType=DECIMAL}, #{amount,jdbcType=DECIMAL}, #{tradeid,jdbcType=INTEGER}, 
+      #{time,jdbcType=TIMESTAMP}, #{hash,jdbcType=VARCHAR}, #{poundage,jdbcType=DECIMAL}, 
+      #{status,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.itcast.bean.MiniBill">
+    insert into mini_bill
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="coinid != null">
+        coinid,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="typestr != null">
+        typeStr,
+      </if>
+      <if test="ctime != null">
+        ctime,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="tradeid != null">
+        tradeid,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="hash != null">
+        hash,
+      </if>
+      <if test="poundage != null">
+        poundage,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="coinid != null">
+        #{coinid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="typestr != null">
+        #{typestr,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null">
+        #{ctime,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeid != null">
+        #{tradeid,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hash != null">
+        #{hash,jdbcType=VARCHAR},
+      </if>
+      <if test="poundage != null">
+        #{poundage,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.itcast.bean.MiniBillExample" resultType="java.lang.Long">
+    select count(*) from mini_bill
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update mini_bill
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.uid != null">
+        uid = #{record.uid,jdbcType=INTEGER},
+      </if>
+      <if test="record.coinid != null">
+        coinid = #{record.coinid,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.typestr != null">
+        typeStr = #{record.typestr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ctime != null">
+        ctime = #{record.ctime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.num != null">
+        num = #{record.num,jdbcType=DECIMAL},
+      </if>
+      <if test="record.amount != null">
+        amount = #{record.amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tradeid != null">
+        tradeid = #{record.tradeid,jdbcType=INTEGER},
+      </if>
+      <if test="record.time != null">
+        time = #{record.time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.hash != null">
+        hash = #{record.hash,jdbcType=VARCHAR},
+      </if>
+      <if test="record.poundage != null">
+        poundage = #{record.poundage,jdbcType=DECIMAL},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update mini_bill
+    set id = #{record.id,jdbcType=BIGINT},
+      uid = #{record.uid,jdbcType=INTEGER},
+      coinid = #{record.coinid,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=INTEGER},
+      typeStr = #{record.typestr,jdbcType=VARCHAR},
+      ctime = #{record.ctime,jdbcType=VARCHAR},
+      num = #{record.num,jdbcType=DECIMAL},
+      amount = #{record.amount,jdbcType=DECIMAL},
+      tradeid = #{record.tradeid,jdbcType=INTEGER},
+      time = #{record.time,jdbcType=TIMESTAMP},
+      hash = #{record.hash,jdbcType=VARCHAR},
+      poundage = #{record.poundage,jdbcType=DECIMAL},
+      status = #{record.status,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itcast.bean.MiniBill">
+    update mini_bill
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="coinid != null">
+        coinid = #{coinid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="typestr != null">
+        typeStr = #{typestr,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null">
+        ctime = #{ctime,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeid != null">
+        tradeid = #{tradeid,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hash != null">
+        hash = #{hash,jdbcType=VARCHAR},
+      </if>
+      <if test="poundage != null">
+        poundage = #{poundage,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itcast.bean.MiniBill">
+    update mini_bill
+    set uid = #{uid,jdbcType=INTEGER},
+      coinid = #{coinid,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      typeStr = #{typestr,jdbcType=VARCHAR},
+      ctime = #{ctime,jdbcType=VARCHAR},
+      num = #{num,jdbcType=DECIMAL},
+      amount = #{amount,jdbcType=DECIMAL},
+      tradeid = #{tradeid,jdbcType=INTEGER},
+      time = #{time,jdbcType=TIMESTAMP},
+      hash = #{hash,jdbcType=VARCHAR},
+      poundage = #{poundage,jdbcType=DECIMAL},
+      status = #{status,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

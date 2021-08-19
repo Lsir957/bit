@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itcast.dao.GeoProductOrderMapper">
+  <resultMap id="BaseResultMap" type="com.itcast.bean.GeoProductOrder">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="batchcode" jdbcType="VARCHAR" property="batchcode" />
+    <result column="amount" jdbcType="INTEGER" property="amount" />
+    <result column="total_price" jdbcType="DECIMAL" property="totalPrice" />
+    <result column="create_time" jdbcType="INTEGER" property="createTime" />
+    <result column="day_out" jdbcType="INTEGER" property="dayOut" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="end_time" jdbcType="INTEGER" property="endTime" />
+    <result column="next_day" jdbcType="VARCHAR" property="nextDay" />
+    <result column="can_reduce" jdbcType="INTEGER" property="canReduce" />
+    <result column="reduce_total_day" jdbcType="INTEGER" property="reduceTotalDay" />
+    <result column="is_dt_award" jdbcType="INTEGER" property="isDtAward" />
+    <result column="is_import" jdbcType="INTEGER" property="isImport" />
+    <result column="pay_type" jdbcType="VARCHAR" property="payType" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, uid, product_id, batchcode, amount, total_price, create_time, day_out, status, 
+    end_time, next_day, can_reduce, reduce_total_day, is_dt_award, is_import, pay_type
+  </sql>
+  <select id="selectByExample" parameterType="com.itcast.bean.GeoProductOrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from geo_product_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from geo_product_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from geo_product_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.itcast.bean.GeoProductOrderExample">
+    delete from geo_product_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.itcast.bean.GeoProductOrder">
+    insert into geo_product_order (id, uid, product_id, 
+      batchcode, amount, total_price, 
+      create_time, day_out, status, 
+      end_time, next_day, can_reduce, 
+      reduce_total_day, is_dt_award, is_import, 
+      pay_type)
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, 
+      #{batchcode,jdbcType=VARCHAR}, #{amount,jdbcType=INTEGER}, #{totalPrice,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=INTEGER}, #{dayOut,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{endTime,jdbcType=INTEGER}, #{nextDay,jdbcType=VARCHAR}, #{canReduce,jdbcType=INTEGER}, 
+      #{reduceTotalDay,jdbcType=INTEGER}, #{isDtAward,jdbcType=INTEGER}, #{isImport,jdbcType=INTEGER}, 
+      #{payType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.itcast.bean.GeoProductOrder">
+    insert into geo_product_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="batchcode != null">
+        batchcode,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="totalPrice != null">
+        total_price,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="dayOut != null">
+        day_out,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="nextDay != null">
+        next_day,
+      </if>
+      <if test="canReduce != null">
+        can_reduce,
+      </if>
+      <if test="reduceTotalDay != null">
+        reduce_total_day,
+      </if>
+      <if test="isDtAward != null">
+        is_dt_award,
+      </if>
+      <if test="isImport != null">
+        is_import,
+      </if>
+      <if test="payType != null">
+        pay_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="batchcode != null">
+        #{batchcode,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="totalPrice != null">
+        #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="dayOut != null">
+        #{dayOut,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=INTEGER},
+      </if>
+      <if test="nextDay != null">
+        #{nextDay,jdbcType=VARCHAR},
+      </if>
+      <if test="canReduce != null">
+        #{canReduce,jdbcType=INTEGER},
+      </if>
+      <if test="reduceTotalDay != null">
+        #{reduceTotalDay,jdbcType=INTEGER},
+      </if>
+      <if test="isDtAward != null">
+        #{isDtAward,jdbcType=INTEGER},
+      </if>
+      <if test="isImport != null">
+        #{isImport,jdbcType=INTEGER},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.itcast.bean.GeoProductOrderExample" resultType="java.lang.Long">
+    select count(*) from geo_product_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update geo_product_order
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.uid != null">
+        uid = #{record.uid,jdbcType=INTEGER},
+      </if>
+      <if test="record.productId != null">
+        product_id = #{record.productId,jdbcType=INTEGER},
+      </if>
+      <if test="record.batchcode != null">
+        batchcode = #{record.batchcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.amount != null">
+        amount = #{record.amount,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalPrice != null">
+        total_price = #{record.totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.dayOut != null">
+        day_out = #{record.dayOut,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.endTime != null">
+        end_time = #{record.endTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.nextDay != null">
+        next_day = #{record.nextDay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.canReduce != null">
+        can_reduce = #{record.canReduce,jdbcType=INTEGER},
+      </if>
+      <if test="record.reduceTotalDay != null">
+        reduce_total_day = #{record.reduceTotalDay,jdbcType=INTEGER},
+      </if>
+      <if test="record.isDtAward != null">
+        is_dt_award = #{record.isDtAward,jdbcType=INTEGER},
+      </if>
+      <if test="record.isImport != null">
+        is_import = #{record.isImport,jdbcType=INTEGER},
+      </if>
+      <if test="record.payType != null">
+        pay_type = #{record.payType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update geo_product_order
+    set id = #{record.id,jdbcType=INTEGER},
+      uid = #{record.uid,jdbcType=INTEGER},
+      product_id = #{record.productId,jdbcType=INTEGER},
+      batchcode = #{record.batchcode,jdbcType=VARCHAR},
+      amount = #{record.amount,jdbcType=INTEGER},
+      total_price = #{record.totalPrice,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=INTEGER},
+      day_out = #{record.dayOut,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      end_time = #{record.endTime,jdbcType=INTEGER},
+      next_day = #{record.nextDay,jdbcType=VARCHAR},
+      can_reduce = #{record.canReduce,jdbcType=INTEGER},
+      reduce_total_day = #{record.reduceTotalDay,jdbcType=INTEGER},
+      is_dt_award = #{record.isDtAward,jdbcType=INTEGER},
+      is_import = #{record.isImport,jdbcType=INTEGER},
+      pay_type = #{record.payType,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itcast.bean.GeoProductOrder">
+    update geo_product_order
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="batchcode != null">
+        batchcode = #{batchcode,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="totalPrice != null">
+        total_price = #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="dayOut != null">
+        day_out = #{dayOut,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=INTEGER},
+      </if>
+      <if test="nextDay != null">
+        next_day = #{nextDay,jdbcType=VARCHAR},
+      </if>
+      <if test="canReduce != null">
+        can_reduce = #{canReduce,jdbcType=INTEGER},
+      </if>
+      <if test="reduceTotalDay != null">
+        reduce_total_day = #{reduceTotalDay,jdbcType=INTEGER},
+      </if>
+      <if test="isDtAward != null">
+        is_dt_award = #{isDtAward,jdbcType=INTEGER},
+      </if>
+      <if test="isImport != null">
+        is_import = #{isImport,jdbcType=INTEGER},
+      </if>
+      <if test="payType != null">
+        pay_type = #{payType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itcast.bean.GeoProductOrder">
+    update geo_product_order
+    set uid = #{uid,jdbcType=INTEGER},
+      product_id = #{productId,jdbcType=INTEGER},
+      batchcode = #{batchcode,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=INTEGER},
+      total_price = #{totalPrice,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=INTEGER},
+      day_out = #{dayOut,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      end_time = #{endTime,jdbcType=INTEGER},
+      next_day = #{nextDay,jdbcType=VARCHAR},
+      can_reduce = #{canReduce,jdbcType=INTEGER},
+      reduce_total_day = #{reduceTotalDay,jdbcType=INTEGER},
+      is_dt_award = #{isDtAward,jdbcType=INTEGER},
+      is_import = #{isImport,jdbcType=INTEGER},
+      pay_type = #{payType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itcast.dao.MiniOrdersMapper">
+  <resultMap id="BaseResultMap" type="com.itcast.bean.MiniOrders">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <id column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <id column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="print_no" jdbcType="VARCHAR" property="printNo" />
+    <result column="express_type" jdbcType="VARCHAR" property="expressType" />
+    <result column="express_no" jdbcType="VARCHAR" property="expressNo" />
+    <result column="pay_type" jdbcType="VARCHAR" property="payType" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="createtime" jdbcType="INTEGER" property="createtime" />
+    <result column="is_pay" jdbcType="INTEGER" property="isPay" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+    <result column="consignee_name" jdbcType="VARCHAR" property="consigneeName" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="buyfwcode" jdbcType="VARCHAR" property="buyfwcode" />
+    <result column="wltype" jdbcType="TINYINT" property="wltype" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.itcast.bean.MiniOrders">
+    <result column="address" jdbcType="LONGVARCHAR" property="address" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, uuid, order_no, uid, print_no, express_type, express_no, pay_type, amount, createtime, 
+    is_pay, status, memo, consignee_name, mobile, buyfwcode, wltype
+  </sql>
+  <sql id="Blob_Column_List">
+    address
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.itcast.bean.MiniOrdersExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from mini_orders
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.itcast.bean.MiniOrdersExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mini_orders
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.itcast.bean.MiniOrdersKey" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from mini_orders
+    where id = #{id,jdbcType=BIGINT}
+      and uuid = #{uuid,jdbcType=VARCHAR}
+      and order_no = #{orderNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.itcast.bean.MiniOrdersKey">
+    delete from mini_orders
+    where id = #{id,jdbcType=BIGINT}
+      and uuid = #{uuid,jdbcType=VARCHAR}
+      and order_no = #{orderNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.itcast.bean.MiniOrdersExample">
+    delete from mini_orders
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.itcast.bean.MiniOrders">
+    insert into mini_orders (id, uuid, order_no, 
+      uid, print_no, express_type, 
+      express_no, pay_type, amount, 
+      createtime, is_pay, status, 
+      memo, consignee_name, mobile, 
+      buyfwcode, wltype, address
+      )
+    values (#{id,jdbcType=BIGINT}, #{uuid,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, 
+      #{uid,jdbcType=INTEGER}, #{printNo,jdbcType=VARCHAR}, #{expressType,jdbcType=VARCHAR}, 
+      #{expressNo,jdbcType=VARCHAR}, #{payType,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, 
+      #{createtime,jdbcType=INTEGER}, #{isPay,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
+      #{memo,jdbcType=VARCHAR}, #{consigneeName,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{buyfwcode,jdbcType=VARCHAR}, #{wltype,jdbcType=TINYINT}, #{address,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.itcast.bean.MiniOrders">
+    insert into mini_orders
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="printNo != null">
+        print_no,
+      </if>
+      <if test="expressType != null">
+        express_type,
+      </if>
+      <if test="expressNo != null">
+        express_no,
+      </if>
+      <if test="payType != null">
+        pay_type,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="isPay != null">
+        is_pay,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="memo != null">
+        memo,
+      </if>
+      <if test="consigneeName != null">
+        consignee_name,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="buyfwcode != null">
+        buyfwcode,
+      </if>
+      <if test="wltype != null">
+        wltype,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="printNo != null">
+        #{printNo,jdbcType=VARCHAR},
+      </if>
+      <if test="expressType != null">
+        #{expressType,jdbcType=VARCHAR},
+      </if>
+      <if test="expressNo != null">
+        #{expressNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=INTEGER},
+      </if>
+      <if test="isPay != null">
+        #{isPay,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeName != null">
+        #{consigneeName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="buyfwcode != null">
+        #{buyfwcode,jdbcType=VARCHAR},
+      </if>
+      <if test="wltype != null">
+        #{wltype,jdbcType=TINYINT},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.itcast.bean.MiniOrdersExample" resultType="java.lang.Long">
+    select count(*) from mini_orders
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update mini_orders
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.uuid != null">
+        uuid = #{record.uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderNo != null">
+        order_no = #{record.orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uid != null">
+        uid = #{record.uid,jdbcType=INTEGER},
+      </if>
+      <if test="record.printNo != null">
+        print_no = #{record.printNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expressType != null">
+        express_type = #{record.expressType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expressNo != null">
+        express_no = #{record.expressNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payType != null">
+        pay_type = #{record.payType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.amount != null">
+        amount = #{record.amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createtime != null">
+        createtime = #{record.createtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.isPay != null">
+        is_pay = #{record.isPay,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo != null">
+        memo = #{record.memo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consigneeName != null">
+        consignee_name = #{record.consigneeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null">
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyfwcode != null">
+        buyfwcode = #{record.buyfwcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wltype != null">
+        wltype = #{record.wltype,jdbcType=TINYINT},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update mini_orders
+    set id = #{record.id,jdbcType=BIGINT},
+      uuid = #{record.uuid,jdbcType=VARCHAR},
+      order_no = #{record.orderNo,jdbcType=VARCHAR},
+      uid = #{record.uid,jdbcType=INTEGER},
+      print_no = #{record.printNo,jdbcType=VARCHAR},
+      express_type = #{record.expressType,jdbcType=VARCHAR},
+      express_no = #{record.expressNo,jdbcType=VARCHAR},
+      pay_type = #{record.payType,jdbcType=VARCHAR},
+      amount = #{record.amount,jdbcType=DECIMAL},
+      createtime = #{record.createtime,jdbcType=INTEGER},
+      is_pay = #{record.isPay,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=VARCHAR},
+      memo = #{record.memo,jdbcType=VARCHAR},
+      consignee_name = #{record.consigneeName,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      buyfwcode = #{record.buyfwcode,jdbcType=VARCHAR},
+      wltype = #{record.wltype,jdbcType=TINYINT},
+      address = #{record.address,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update mini_orders
+    set id = #{record.id,jdbcType=BIGINT},
+      uuid = #{record.uuid,jdbcType=VARCHAR},
+      order_no = #{record.orderNo,jdbcType=VARCHAR},
+      uid = #{record.uid,jdbcType=INTEGER},
+      print_no = #{record.printNo,jdbcType=VARCHAR},
+      express_type = #{record.expressType,jdbcType=VARCHAR},
+      express_no = #{record.expressNo,jdbcType=VARCHAR},
+      pay_type = #{record.payType,jdbcType=VARCHAR},
+      amount = #{record.amount,jdbcType=DECIMAL},
+      createtime = #{record.createtime,jdbcType=INTEGER},
+      is_pay = #{record.isPay,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=VARCHAR},
+      memo = #{record.memo,jdbcType=VARCHAR},
+      consignee_name = #{record.consigneeName,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      buyfwcode = #{record.buyfwcode,jdbcType=VARCHAR},
+      wltype = #{record.wltype,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itcast.bean.MiniOrders">
+    update mini_orders
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="printNo != null">
+        print_no = #{printNo,jdbcType=VARCHAR},
+      </if>
+      <if test="expressType != null">
+        express_type = #{expressType,jdbcType=VARCHAR},
+      </if>
+      <if test="expressNo != null">
+        express_no = #{expressNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null">
+        pay_type = #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=INTEGER},
+      </if>
+      <if test="isPay != null">
+        is_pay = #{isPay,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeName != null">
+        consignee_name = #{consigneeName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="buyfwcode != null">
+        buyfwcode = #{buyfwcode,jdbcType=VARCHAR},
+      </if>
+      <if test="wltype != null">
+        wltype = #{wltype,jdbcType=TINYINT},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and uuid = #{uuid,jdbcType=VARCHAR}
+      and order_no = #{orderNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.itcast.bean.MiniOrders">
+    update mini_orders
+    set uid = #{uid,jdbcType=INTEGER},
+      print_no = #{printNo,jdbcType=VARCHAR},
+      express_type = #{expressType,jdbcType=VARCHAR},
+      express_no = #{expressNo,jdbcType=VARCHAR},
+      pay_type = #{payType,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      createtime = #{createtime,jdbcType=INTEGER},
+      is_pay = #{isPay,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR},
+      consignee_name = #{consigneeName,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      buyfwcode = #{buyfwcode,jdbcType=VARCHAR},
+      wltype = #{wltype,jdbcType=TINYINT},
+      address = #{address,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and uuid = #{uuid,jdbcType=VARCHAR}
+      and order_no = #{orderNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itcast.bean.MiniOrders">
+    update mini_orders
+    set uid = #{uid,jdbcType=INTEGER},
+      print_no = #{printNo,jdbcType=VARCHAR},
+      express_type = #{expressType,jdbcType=VARCHAR},
+      express_no = #{expressNo,jdbcType=VARCHAR},
+      pay_type = #{payType,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      createtime = #{createtime,jdbcType=INTEGER},
+      is_pay = #{isPay,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR},
+      consignee_name = #{consigneeName,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      buyfwcode = #{buyfwcode,jdbcType=VARCHAR},
+      wltype = #{wltype,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+      and uuid = #{uuid,jdbcType=VARCHAR}
+      and order_no = #{orderNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

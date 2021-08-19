@@ -1,0 +1,1138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itcast.dao.ConfigMapper">
+  <resultMap id="BaseResultMap" type="com.itcast.bean.Config">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="tag" jdbcType="VARCHAR" property="tag" />
+    <result column="is_up" jdbcType="TINYINT" property="isUp" />
+    <result column="sd_sxf" jdbcType="DECIMAL" property="sdSxf" />
+    <result column="tx_sxf" jdbcType="DECIMAL" property="txSxf" />
+    <result column="download" jdbcType="VARCHAR" property="download" />
+    <result column="ve" jdbcType="VARCHAR" property="ve" />
+    <result column="gold" jdbcType="INTEGER" property="gold" />
+    <result column="wkdjs" jdbcType="INTEGER" property="wkdjs" />
+    <result column="day_txcs" jdbcType="INTEGER" property="dayTxcs" />
+    <result column="stop" jdbcType="INTEGER" property="stop" />
+    <result column="csjw" jdbcType="INTEGER" property="csjw" />
+    <result column="jw_max" jdbcType="INTEGER" property="jwMax" />
+    <result column="tj" jdbcType="DECIMAL" property="tj" />
+    <result column="tjx" jdbcType="DECIMAL" property="tjx" />
+    <result column="dc_bl" jdbcType="DECIMAL" property="dcBl" />
+    <result column="fh" jdbcType="DECIMAL" property="fh" />
+    <result column="jd_yj" jdbcType="DECIMAL" property="jdYj" />
+    <result column="jds" jdbcType="INTEGER" property="jds" />
+    <result column="gudong" jdbcType="INTEGER" property="gudong" />
+    <result column="ths_jd" jdbcType="INTEGER" property="thsJd" />
+    <result column="sdover_time" jdbcType="VARCHAR" property="sdoverTime" />
+    <result column="kefuweixin" jdbcType="VARCHAR" property="kefuweixin" />
+    <result column="signin_jl" jdbcType="DECIMAL" property="signinJl" />
+    <result column="sd_sxf_uada" jdbcType="REAL" property="sdSxfUada" />
+    <result column="loginstatu" jdbcType="INTEGER" property="loginstatu" />
+    <result column="reg_statu" jdbcType="INTEGER" property="regStatu" />
+    <result column="tx_statu" jdbcType="INTEGER" property="txStatu" />
+    <result column="cj_yzm" jdbcType="INTEGER" property="cjYzm" />
+    <result column="ptcb2" jdbcType="INTEGER" property="ptcb2" />
+    <result column="ptcb3" jdbcType="INTEGER" property="ptcb3" />
+    <result column="tj2" jdbcType="DECIMAL" property="tj2" />
+    <result column="sc_sf" jdbcType="REAL" property="scSf" />
+    <result column="sc_sy" jdbcType="REAL" property="scSy" />
+    <result column="ks_time" jdbcType="VARCHAR" property="ksTime" />
+    <result column="js_time" jdbcType="VARCHAR" property="jsTime" />
+    <result column="gdfh" jdbcType="DECIMAL" property="gdfh" />
+    <result column="freeze" jdbcType="DECIMAL" property="freeze" />
+    <result column="dtss" jdbcType="DECIMAL" property="dtss" />
+    <result column="tdss" jdbcType="DECIMAL" property="tdss" />
+    <result column="ios_download" jdbcType="VARCHAR" property="iosDownload" />
+    <result column="ios_ve" jdbcType="VARCHAR" property="iosVe" />
+    <result column="android_download" jdbcType="VARCHAR" property="androidDownload" />
+    <result column="u2immt" jdbcType="REAL" property="u2immt" />
+    <result column="award_lv1" jdbcType="VARCHAR" property="awardLv1" />
+    <result column="award_lv2" jdbcType="VARCHAR" property="awardLv2" />
+    <result column="award_lv3" jdbcType="VARCHAR" property="awardLv3" />
+    <result column="award_lv4" jdbcType="VARCHAR" property="awardLv4" />
+    <result column="award_lv5" jdbcType="VARCHAR" property="awardLv5" />
+    <result column="bed_award" jdbcType="INTEGER" property="bedAward" />
+    <result column="bed_award_jishu" jdbcType="INTEGER" property="bedAwardJishu" />
+    <result column="immt_dt_award" jdbcType="INTEGER" property="immtDtAward" />
+    <result column="sf_zhiya_rate" jdbcType="DECIMAL" property="sfZhiyaRate" />
+    <result column="is_draw" jdbcType="INTEGER" property="isDraw" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.itcast.bean.Config">
+    <result column="code_img" jdbcType="LONGVARCHAR" property="codeImg" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, tag, is_up, sd_sxf, tx_sxf, download, ve, gold, wkdjs, day_txcs, stop, csjw, 
+    jw_max, tj, tjx, dc_bl, fh, jd_yj, jds, gudong, ths_jd, sdover_time, kefuweixin, 
+    signin_jl, sd_sxf_uada, loginstatu, reg_statu, tx_statu, cj_yzm, ptcb2, ptcb3, tj2, 
+    sc_sf, sc_sy, ks_time, js_time, gdfh, freeze, dtss, tdss, ios_download, ios_ve, android_download, 
+    u2immt, award_lv1, award_lv2, award_lv3, award_lv4, award_lv5, bed_award, bed_award_jishu, 
+    immt_dt_award, sf_zhiya_rate, is_draw
+  </sql>
+  <sql id="Blob_Column_List">
+    code_img
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.itcast.bean.ConfigExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.itcast.bean.ConfigExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.itcast.bean.ConfigExample">
+    delete from config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.itcast.bean.Config">
+    insert into config (id, tag, is_up, 
+      sd_sxf, tx_sxf, download, 
+      ve, gold, wkdjs, day_txcs, 
+      stop, csjw, jw_max, 
+      tj, tjx, dc_bl, fh, 
+      jd_yj, jds, gudong, 
+      ths_jd, sdover_time, kefuweixin, 
+      signin_jl, sd_sxf_uada, loginstatu, 
+      reg_statu, tx_statu, cj_yzm, 
+      ptcb2, ptcb3, tj2, 
+      sc_sf, sc_sy, ks_time, js_time, 
+      gdfh, freeze, dtss, 
+      tdss, ios_download, ios_ve, 
+      android_download, u2immt, award_lv1, 
+      award_lv2, award_lv3, award_lv4, 
+      award_lv5, bed_award, bed_award_jishu, 
+      immt_dt_award, sf_zhiya_rate, is_draw, 
+      code_img)
+    values (#{id,jdbcType=INTEGER}, #{tag,jdbcType=VARCHAR}, #{isUp,jdbcType=TINYINT}, 
+      #{sdSxf,jdbcType=DECIMAL}, #{txSxf,jdbcType=DECIMAL}, #{download,jdbcType=VARCHAR}, 
+      #{ve,jdbcType=VARCHAR}, #{gold,jdbcType=INTEGER}, #{wkdjs,jdbcType=INTEGER}, #{dayTxcs,jdbcType=INTEGER}, 
+      #{stop,jdbcType=INTEGER}, #{csjw,jdbcType=INTEGER}, #{jwMax,jdbcType=INTEGER}, 
+      #{tj,jdbcType=DECIMAL}, #{tjx,jdbcType=DECIMAL}, #{dcBl,jdbcType=DECIMAL}, #{fh,jdbcType=DECIMAL}, 
+      #{jdYj,jdbcType=DECIMAL}, #{jds,jdbcType=INTEGER}, #{gudong,jdbcType=INTEGER}, 
+      #{thsJd,jdbcType=INTEGER}, #{sdoverTime,jdbcType=VARCHAR}, #{kefuweixin,jdbcType=VARCHAR}, 
+      #{signinJl,jdbcType=DECIMAL}, #{sdSxfUada,jdbcType=REAL}, #{loginstatu,jdbcType=INTEGER}, 
+      #{regStatu,jdbcType=INTEGER}, #{txStatu,jdbcType=INTEGER}, #{cjYzm,jdbcType=INTEGER}, 
+      #{ptcb2,jdbcType=INTEGER}, #{ptcb3,jdbcType=INTEGER}, #{tj2,jdbcType=DECIMAL}, 
+      #{scSf,jdbcType=REAL}, #{scSy,jdbcType=REAL}, #{ksTime,jdbcType=VARCHAR}, #{jsTime,jdbcType=VARCHAR}, 
+      #{gdfh,jdbcType=DECIMAL}, #{freeze,jdbcType=DECIMAL}, #{dtss,jdbcType=DECIMAL}, 
+      #{tdss,jdbcType=DECIMAL}, #{iosDownload,jdbcType=VARCHAR}, #{iosVe,jdbcType=VARCHAR}, 
+      #{androidDownload,jdbcType=VARCHAR}, #{u2immt,jdbcType=REAL}, #{awardLv1,jdbcType=VARCHAR}, 
+      #{awardLv2,jdbcType=VARCHAR}, #{awardLv3,jdbcType=VARCHAR}, #{awardLv4,jdbcType=VARCHAR}, 
+      #{awardLv5,jdbcType=VARCHAR}, #{bedAward,jdbcType=INTEGER}, #{bedAwardJishu,jdbcType=INTEGER}, 
+      #{immtDtAward,jdbcType=INTEGER}, #{sfZhiyaRate,jdbcType=DECIMAL}, #{isDraw,jdbcType=INTEGER}, 
+      #{codeImg,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.itcast.bean.Config">
+    insert into config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tag != null">
+        tag,
+      </if>
+      <if test="isUp != null">
+        is_up,
+      </if>
+      <if test="sdSxf != null">
+        sd_sxf,
+      </if>
+      <if test="txSxf != null">
+        tx_sxf,
+      </if>
+      <if test="download != null">
+        download,
+      </if>
+      <if test="ve != null">
+        ve,
+      </if>
+      <if test="gold != null">
+        gold,
+      </if>
+      <if test="wkdjs != null">
+        wkdjs,
+      </if>
+      <if test="dayTxcs != null">
+        day_txcs,
+      </if>
+      <if test="stop != null">
+        stop,
+      </if>
+      <if test="csjw != null">
+        csjw,
+      </if>
+      <if test="jwMax != null">
+        jw_max,
+      </if>
+      <if test="tj != null">
+        tj,
+      </if>
+      <if test="tjx != null">
+        tjx,
+      </if>
+      <if test="dcBl != null">
+        dc_bl,
+      </if>
+      <if test="fh != null">
+        fh,
+      </if>
+      <if test="jdYj != null">
+        jd_yj,
+      </if>
+      <if test="jds != null">
+        jds,
+      </if>
+      <if test="gudong != null">
+        gudong,
+      </if>
+      <if test="thsJd != null">
+        ths_jd,
+      </if>
+      <if test="sdoverTime != null">
+        sdover_time,
+      </if>
+      <if test="kefuweixin != null">
+        kefuweixin,
+      </if>
+      <if test="signinJl != null">
+        signin_jl,
+      </if>
+      <if test="sdSxfUada != null">
+        sd_sxf_uada,
+      </if>
+      <if test="loginstatu != null">
+        loginstatu,
+      </if>
+      <if test="regStatu != null">
+        reg_statu,
+      </if>
+      <if test="txStatu != null">
+        tx_statu,
+      </if>
+      <if test="cjYzm != null">
+        cj_yzm,
+      </if>
+      <if test="ptcb2 != null">
+        ptcb2,
+      </if>
+      <if test="ptcb3 != null">
+        ptcb3,
+      </if>
+      <if test="tj2 != null">
+        tj2,
+      </if>
+      <if test="scSf != null">
+        sc_sf,
+      </if>
+      <if test="scSy != null">
+        sc_sy,
+      </if>
+      <if test="ksTime != null">
+        ks_time,
+      </if>
+      <if test="jsTime != null">
+        js_time,
+      </if>
+      <if test="gdfh != null">
+        gdfh,
+      </if>
+      <if test="freeze != null">
+        freeze,
+      </if>
+      <if test="dtss != null">
+        dtss,
+      </if>
+      <if test="tdss != null">
+        tdss,
+      </if>
+      <if test="iosDownload != null">
+        ios_download,
+      </if>
+      <if test="iosVe != null">
+        ios_ve,
+      </if>
+      <if test="androidDownload != null">
+        android_download,
+      </if>
+      <if test="u2immt != null">
+        u2immt,
+      </if>
+      <if test="awardLv1 != null">
+        award_lv1,
+      </if>
+      <if test="awardLv2 != null">
+        award_lv2,
+      </if>
+      <if test="awardLv3 != null">
+        award_lv3,
+      </if>
+      <if test="awardLv4 != null">
+        award_lv4,
+      </if>
+      <if test="awardLv5 != null">
+        award_lv5,
+      </if>
+      <if test="bedAward != null">
+        bed_award,
+      </if>
+      <if test="bedAwardJishu != null">
+        bed_award_jishu,
+      </if>
+      <if test="immtDtAward != null">
+        immt_dt_award,
+      </if>
+      <if test="sfZhiyaRate != null">
+        sf_zhiya_rate,
+      </if>
+      <if test="isDraw != null">
+        is_draw,
+      </if>
+      <if test="codeImg != null">
+        code_img,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tag != null">
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="isUp != null">
+        #{isUp,jdbcType=TINYINT},
+      </if>
+      <if test="sdSxf != null">
+        #{sdSxf,jdbcType=DECIMAL},
+      </if>
+      <if test="txSxf != null">
+        #{txSxf,jdbcType=DECIMAL},
+      </if>
+      <if test="download != null">
+        #{download,jdbcType=VARCHAR},
+      </if>
+      <if test="ve != null">
+        #{ve,jdbcType=VARCHAR},
+      </if>
+      <if test="gold != null">
+        #{gold,jdbcType=INTEGER},
+      </if>
+      <if test="wkdjs != null">
+        #{wkdjs,jdbcType=INTEGER},
+      </if>
+      <if test="dayTxcs != null">
+        #{dayTxcs,jdbcType=INTEGER},
+      </if>
+      <if test="stop != null">
+        #{stop,jdbcType=INTEGER},
+      </if>
+      <if test="csjw != null">
+        #{csjw,jdbcType=INTEGER},
+      </if>
+      <if test="jwMax != null">
+        #{jwMax,jdbcType=INTEGER},
+      </if>
+      <if test="tj != null">
+        #{tj,jdbcType=DECIMAL},
+      </if>
+      <if test="tjx != null">
+        #{tjx,jdbcType=DECIMAL},
+      </if>
+      <if test="dcBl != null">
+        #{dcBl,jdbcType=DECIMAL},
+      </if>
+      <if test="fh != null">
+        #{fh,jdbcType=DECIMAL},
+      </if>
+      <if test="jdYj != null">
+        #{jdYj,jdbcType=DECIMAL},
+      </if>
+      <if test="jds != null">
+        #{jds,jdbcType=INTEGER},
+      </if>
+      <if test="gudong != null">
+        #{gudong,jdbcType=INTEGER},
+      </if>
+      <if test="thsJd != null">
+        #{thsJd,jdbcType=INTEGER},
+      </if>
+      <if test="sdoverTime != null">
+        #{sdoverTime,jdbcType=VARCHAR},
+      </if>
+      <if test="kefuweixin != null">
+        #{kefuweixin,jdbcType=VARCHAR},
+      </if>
+      <if test="signinJl != null">
+        #{signinJl,jdbcType=DECIMAL},
+      </if>
+      <if test="sdSxfUada != null">
+        #{sdSxfUada,jdbcType=REAL},
+      </if>
+      <if test="loginstatu != null">
+        #{loginstatu,jdbcType=INTEGER},
+      </if>
+      <if test="regStatu != null">
+        #{regStatu,jdbcType=INTEGER},
+      </if>
+      <if test="txStatu != null">
+        #{txStatu,jdbcType=INTEGER},
+      </if>
+      <if test="cjYzm != null">
+        #{cjYzm,jdbcType=INTEGER},
+      </if>
+      <if test="ptcb2 != null">
+        #{ptcb2,jdbcType=INTEGER},
+      </if>
+      <if test="ptcb3 != null">
+        #{ptcb3,jdbcType=INTEGER},
+      </if>
+      <if test="tj2 != null">
+        #{tj2,jdbcType=DECIMAL},
+      </if>
+      <if test="scSf != null">
+        #{scSf,jdbcType=REAL},
+      </if>
+      <if test="scSy != null">
+        #{scSy,jdbcType=REAL},
+      </if>
+      <if test="ksTime != null">
+        #{ksTime,jdbcType=VARCHAR},
+      </if>
+      <if test="jsTime != null">
+        #{jsTime,jdbcType=VARCHAR},
+      </if>
+      <if test="gdfh != null">
+        #{gdfh,jdbcType=DECIMAL},
+      </if>
+      <if test="freeze != null">
+        #{freeze,jdbcType=DECIMAL},
+      </if>
+      <if test="dtss != null">
+        #{dtss,jdbcType=DECIMAL},
+      </if>
+      <if test="tdss != null">
+        #{tdss,jdbcType=DECIMAL},
+      </if>
+      <if test="iosDownload != null">
+        #{iosDownload,jdbcType=VARCHAR},
+      </if>
+      <if test="iosVe != null">
+        #{iosVe,jdbcType=VARCHAR},
+      </if>
+      <if test="androidDownload != null">
+        #{androidDownload,jdbcType=VARCHAR},
+      </if>
+      <if test="u2immt != null">
+        #{u2immt,jdbcType=REAL},
+      </if>
+      <if test="awardLv1 != null">
+        #{awardLv1,jdbcType=VARCHAR},
+      </if>
+      <if test="awardLv2 != null">
+        #{awardLv2,jdbcType=VARCHAR},
+      </if>
+      <if test="awardLv3 != null">
+        #{awardLv3,jdbcType=VARCHAR},
+      </if>
+      <if test="awardLv4 != null">
+        #{awardLv4,jdbcType=VARCHAR},
+      </if>
+      <if test="awardLv5 != null">
+        #{awardLv5,jdbcType=VARCHAR},
+      </if>
+      <if test="bedAward != null">
+        #{bedAward,jdbcType=INTEGER},
+      </if>
+      <if test="bedAwardJishu != null">
+        #{bedAwardJishu,jdbcType=INTEGER},
+      </if>
+      <if test="immtDtAward != null">
+        #{immtDtAward,jdbcType=INTEGER},
+      </if>
+      <if test="sfZhiyaRate != null">
+        #{sfZhiyaRate,jdbcType=DECIMAL},
+      </if>
+      <if test="isDraw != null">
+        #{isDraw,jdbcType=INTEGER},
+      </if>
+      <if test="codeImg != null">
+        #{codeImg,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.itcast.bean.ConfigExample" resultType="java.lang.Long">
+    select count(*) from config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update config
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.tag != null">
+        tag = #{record.tag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isUp != null">
+        is_up = #{record.isUp,jdbcType=TINYINT},
+      </if>
+      <if test="record.sdSxf != null">
+        sd_sxf = #{record.sdSxf,jdbcType=DECIMAL},
+      </if>
+      <if test="record.txSxf != null">
+        tx_sxf = #{record.txSxf,jdbcType=DECIMAL},
+      </if>
+      <if test="record.download != null">
+        download = #{record.download,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ve != null">
+        ve = #{record.ve,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gold != null">
+        gold = #{record.gold,jdbcType=INTEGER},
+      </if>
+      <if test="record.wkdjs != null">
+        wkdjs = #{record.wkdjs,jdbcType=INTEGER},
+      </if>
+      <if test="record.dayTxcs != null">
+        day_txcs = #{record.dayTxcs,jdbcType=INTEGER},
+      </if>
+      <if test="record.stop != null">
+        stop = #{record.stop,jdbcType=INTEGER},
+      </if>
+      <if test="record.csjw != null">
+        csjw = #{record.csjw,jdbcType=INTEGER},
+      </if>
+      <if test="record.jwMax != null">
+        jw_max = #{record.jwMax,jdbcType=INTEGER},
+      </if>
+      <if test="record.tj != null">
+        tj = #{record.tj,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tjx != null">
+        tjx = #{record.tjx,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dcBl != null">
+        dc_bl = #{record.dcBl,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fh != null">
+        fh = #{record.fh,jdbcType=DECIMAL},
+      </if>
+      <if test="record.jdYj != null">
+        jd_yj = #{record.jdYj,jdbcType=DECIMAL},
+      </if>
+      <if test="record.jds != null">
+        jds = #{record.jds,jdbcType=INTEGER},
+      </if>
+      <if test="record.gudong != null">
+        gudong = #{record.gudong,jdbcType=INTEGER},
+      </if>
+      <if test="record.thsJd != null">
+        ths_jd = #{record.thsJd,jdbcType=INTEGER},
+      </if>
+      <if test="record.sdoverTime != null">
+        sdover_time = #{record.sdoverTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kefuweixin != null">
+        kefuweixin = #{record.kefuweixin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signinJl != null">
+        signin_jl = #{record.signinJl,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sdSxfUada != null">
+        sd_sxf_uada = #{record.sdSxfUada,jdbcType=REAL},
+      </if>
+      <if test="record.loginstatu != null">
+        loginstatu = #{record.loginstatu,jdbcType=INTEGER},
+      </if>
+      <if test="record.regStatu != null">
+        reg_statu = #{record.regStatu,jdbcType=INTEGER},
+      </if>
+      <if test="record.txStatu != null">
+        tx_statu = #{record.txStatu,jdbcType=INTEGER},
+      </if>
+      <if test="record.cjYzm != null">
+        cj_yzm = #{record.cjYzm,jdbcType=INTEGER},
+      </if>
+      <if test="record.ptcb2 != null">
+        ptcb2 = #{record.ptcb2,jdbcType=INTEGER},
+      </if>
+      <if test="record.ptcb3 != null">
+        ptcb3 = #{record.ptcb3,jdbcType=INTEGER},
+      </if>
+      <if test="record.tj2 != null">
+        tj2 = #{record.tj2,jdbcType=DECIMAL},
+      </if>
+      <if test="record.scSf != null">
+        sc_sf = #{record.scSf,jdbcType=REAL},
+      </if>
+      <if test="record.scSy != null">
+        sc_sy = #{record.scSy,jdbcType=REAL},
+      </if>
+      <if test="record.ksTime != null">
+        ks_time = #{record.ksTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jsTime != null">
+        js_time = #{record.jsTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gdfh != null">
+        gdfh = #{record.gdfh,jdbcType=DECIMAL},
+      </if>
+      <if test="record.freeze != null">
+        freeze = #{record.freeze,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dtss != null">
+        dtss = #{record.dtss,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tdss != null">
+        tdss = #{record.tdss,jdbcType=DECIMAL},
+      </if>
+      <if test="record.iosDownload != null">
+        ios_download = #{record.iosDownload,jdbcType=VARCHAR},
+      </if>
+      <if test="record.iosVe != null">
+        ios_ve = #{record.iosVe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.androidDownload != null">
+        android_download = #{record.androidDownload,jdbcType=VARCHAR},
+      </if>
+      <if test="record.u2immt != null">
+        u2immt = #{record.u2immt,jdbcType=REAL},
+      </if>
+      <if test="record.awardLv1 != null">
+        award_lv1 = #{record.awardLv1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.awardLv2 != null">
+        award_lv2 = #{record.awardLv2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.awardLv3 != null">
+        award_lv3 = #{record.awardLv3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.awardLv4 != null">
+        award_lv4 = #{record.awardLv4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.awardLv5 != null">
+        award_lv5 = #{record.awardLv5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bedAward != null">
+        bed_award = #{record.bedAward,jdbcType=INTEGER},
+      </if>
+      <if test="record.bedAwardJishu != null">
+        bed_award_jishu = #{record.bedAwardJishu,jdbcType=INTEGER},
+      </if>
+      <if test="record.immtDtAward != null">
+        immt_dt_award = #{record.immtDtAward,jdbcType=INTEGER},
+      </if>
+      <if test="record.sfZhiyaRate != null">
+        sf_zhiya_rate = #{record.sfZhiyaRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isDraw != null">
+        is_draw = #{record.isDraw,jdbcType=INTEGER},
+      </if>
+      <if test="record.codeImg != null">
+        code_img = #{record.codeImg,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update config
+    set id = #{record.id,jdbcType=INTEGER},
+      tag = #{record.tag,jdbcType=VARCHAR},
+      is_up = #{record.isUp,jdbcType=TINYINT},
+      sd_sxf = #{record.sdSxf,jdbcType=DECIMAL},
+      tx_sxf = #{record.txSxf,jdbcType=DECIMAL},
+      download = #{record.download,jdbcType=VARCHAR},
+      ve = #{record.ve,jdbcType=VARCHAR},
+      gold = #{record.gold,jdbcType=INTEGER},
+      wkdjs = #{record.wkdjs,jdbcType=INTEGER},
+      day_txcs = #{record.dayTxcs,jdbcType=INTEGER},
+      stop = #{record.stop,jdbcType=INTEGER},
+      csjw = #{record.csjw,jdbcType=INTEGER},
+      jw_max = #{record.jwMax,jdbcType=INTEGER},
+      tj = #{record.tj,jdbcType=DECIMAL},
+      tjx = #{record.tjx,jdbcType=DECIMAL},
+      dc_bl = #{record.dcBl,jdbcType=DECIMAL},
+      fh = #{record.fh,jdbcType=DECIMAL},
+      jd_yj = #{record.jdYj,jdbcType=DECIMAL},
+      jds = #{record.jds,jdbcType=INTEGER},
+      gudong = #{record.gudong,jdbcType=INTEGER},
+      ths_jd = #{record.thsJd,jdbcType=INTEGER},
+      sdover_time = #{record.sdoverTime,jdbcType=VARCHAR},
+      kefuweixin = #{record.kefuweixin,jdbcType=VARCHAR},
+      signin_jl = #{record.signinJl,jdbcType=DECIMAL},
+      sd_sxf_uada = #{record.sdSxfUada,jdbcType=REAL},
+      loginstatu = #{record.loginstatu,jdbcType=INTEGER},
+      reg_statu = #{record.regStatu,jdbcType=INTEGER},
+      tx_statu = #{record.txStatu,jdbcType=INTEGER},
+      cj_yzm = #{record.cjYzm,jdbcType=INTEGER},
+      ptcb2 = #{record.ptcb2,jdbcType=INTEGER},
+      ptcb3 = #{record.ptcb3,jdbcType=INTEGER},
+      tj2 = #{record.tj2,jdbcType=DECIMAL},
+      sc_sf = #{record.scSf,jdbcType=REAL},
+      sc_sy = #{record.scSy,jdbcType=REAL},
+      ks_time = #{record.ksTime,jdbcType=VARCHAR},
+      js_time = #{record.jsTime,jdbcType=VARCHAR},
+      gdfh = #{record.gdfh,jdbcType=DECIMAL},
+      freeze = #{record.freeze,jdbcType=DECIMAL},
+      dtss = #{record.dtss,jdbcType=DECIMAL},
+      tdss = #{record.tdss,jdbcType=DECIMAL},
+      ios_download = #{record.iosDownload,jdbcType=VARCHAR},
+      ios_ve = #{record.iosVe,jdbcType=VARCHAR},
+      android_download = #{record.androidDownload,jdbcType=VARCHAR},
+      u2immt = #{record.u2immt,jdbcType=REAL},
+      award_lv1 = #{record.awardLv1,jdbcType=VARCHAR},
+      award_lv2 = #{record.awardLv2,jdbcType=VARCHAR},
+      award_lv3 = #{record.awardLv3,jdbcType=VARCHAR},
+      award_lv4 = #{record.awardLv4,jdbcType=VARCHAR},
+      award_lv5 = #{record.awardLv5,jdbcType=VARCHAR},
+      bed_award = #{record.bedAward,jdbcType=INTEGER},
+      bed_award_jishu = #{record.bedAwardJishu,jdbcType=INTEGER},
+      immt_dt_award = #{record.immtDtAward,jdbcType=INTEGER},
+      sf_zhiya_rate = #{record.sfZhiyaRate,jdbcType=DECIMAL},
+      is_draw = #{record.isDraw,jdbcType=INTEGER},
+      code_img = #{record.codeImg,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update config
+    set id = #{record.id,jdbcType=INTEGER},
+      tag = #{record.tag,jdbcType=VARCHAR},
+      is_up = #{record.isUp,jdbcType=TINYINT},
+      sd_sxf = #{record.sdSxf,jdbcType=DECIMAL},
+      tx_sxf = #{record.txSxf,jdbcType=DECIMAL},
+      download = #{record.download,jdbcType=VARCHAR},
+      ve = #{record.ve,jdbcType=VARCHAR},
+      gold = #{record.gold,jdbcType=INTEGER},
+      wkdjs = #{record.wkdjs,jdbcType=INTEGER},
+      day_txcs = #{record.dayTxcs,jdbcType=INTEGER},
+      stop = #{record.stop,jdbcType=INTEGER},
+      csjw = #{record.csjw,jdbcType=INTEGER},
+      jw_max = #{record.jwMax,jdbcType=INTEGER},
+      tj = #{record.tj,jdbcType=DECIMAL},
+      tjx = #{record.tjx,jdbcType=DECIMAL},
+      dc_bl = #{record.dcBl,jdbcType=DECIMAL},
+      fh = #{record.fh,jdbcType=DECIMAL},
+      jd_yj = #{record.jdYj,jdbcType=DECIMAL},
+      jds = #{record.jds,jdbcType=INTEGER},
+      gudong = #{record.gudong,jdbcType=INTEGER},
+      ths_jd = #{record.thsJd,jdbcType=INTEGER},
+      sdover_time = #{record.sdoverTime,jdbcType=VARCHAR},
+      kefuweixin = #{record.kefuweixin,jdbcType=VARCHAR},
+      signin_jl = #{record.signinJl,jdbcType=DECIMAL},
+      sd_sxf_uada = #{record.sdSxfUada,jdbcType=REAL},
+      loginstatu = #{record.loginstatu,jdbcType=INTEGER},
+      reg_statu = #{record.regStatu,jdbcType=INTEGER},
+      tx_statu = #{record.txStatu,jdbcType=INTEGER},
+      cj_yzm = #{record.cjYzm,jdbcType=INTEGER},
+      ptcb2 = #{record.ptcb2,jdbcType=INTEGER},
+      ptcb3 = #{record.ptcb3,jdbcType=INTEGER},
+      tj2 = #{record.tj2,jdbcType=DECIMAL},
+      sc_sf = #{record.scSf,jdbcType=REAL},
+      sc_sy = #{record.scSy,jdbcType=REAL},
+      ks_time = #{record.ksTime,jdbcType=VARCHAR},
+      js_time = #{record.jsTime,jdbcType=VARCHAR},
+      gdfh = #{record.gdfh,jdbcType=DECIMAL},
+      freeze = #{record.freeze,jdbcType=DECIMAL},
+      dtss = #{record.dtss,jdbcType=DECIMAL},
+      tdss = #{record.tdss,jdbcType=DECIMAL},
+      ios_download = #{record.iosDownload,jdbcType=VARCHAR},
+      ios_ve = #{record.iosVe,jdbcType=VARCHAR},
+      android_download = #{record.androidDownload,jdbcType=VARCHAR},
+      u2immt = #{record.u2immt,jdbcType=REAL},
+      award_lv1 = #{record.awardLv1,jdbcType=VARCHAR},
+      award_lv2 = #{record.awardLv2,jdbcType=VARCHAR},
+      award_lv3 = #{record.awardLv3,jdbcType=VARCHAR},
+      award_lv4 = #{record.awardLv4,jdbcType=VARCHAR},
+      award_lv5 = #{record.awardLv5,jdbcType=VARCHAR},
+      bed_award = #{record.bedAward,jdbcType=INTEGER},
+      bed_award_jishu = #{record.bedAwardJishu,jdbcType=INTEGER},
+      immt_dt_award = #{record.immtDtAward,jdbcType=INTEGER},
+      sf_zhiya_rate = #{record.sfZhiyaRate,jdbcType=DECIMAL},
+      is_draw = #{record.isDraw,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itcast.bean.Config">
+    update config
+    <set>
+      <if test="tag != null">
+        tag = #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="isUp != null">
+        is_up = #{isUp,jdbcType=TINYINT},
+      </if>
+      <if test="sdSxf != null">
+        sd_sxf = #{sdSxf,jdbcType=DECIMAL},
+      </if>
+      <if test="txSxf != null">
+        tx_sxf = #{txSxf,jdbcType=DECIMAL},
+      </if>
+      <if test="download != null">
+        download = #{download,jdbcType=VARCHAR},
+      </if>
+      <if test="ve != null">
+        ve = #{ve,jdbcType=VARCHAR},
+      </if>
+      <if test="gold != null">
+        gold = #{gold,jdbcType=INTEGER},
+      </if>
+      <if test="wkdjs != null">
+        wkdjs = #{wkdjs,jdbcType=INTEGER},
+      </if>
+      <if test="dayTxcs != null">
+        day_txcs = #{dayTxcs,jdbcType=INTEGER},
+      </if>
+      <if test="stop != null">
+        stop = #{stop,jdbcType=INTEGER},
+      </if>
+      <if test="csjw != null">
+        csjw = #{csjw,jdbcType=INTEGER},
+      </if>
+      <if test="jwMax != null">
+        jw_max = #{jwMax,jdbcType=INTEGER},
+      </if>
+      <if test="tj != null">
+        tj = #{tj,jdbcType=DECIMAL},
+      </if>
+      <if test="tjx != null">
+        tjx = #{tjx,jdbcType=DECIMAL},
+      </if>
+      <if test="dcBl != null">
+        dc_bl = #{dcBl,jdbcType=DECIMAL},
+      </if>
+      <if test="fh != null">
+        fh = #{fh,jdbcType=DECIMAL},
+      </if>
+      <if test="jdYj != null">
+        jd_yj = #{jdYj,jdbcType=DECIMAL},
+      </if>
+      <if test="jds != null">
+        jds = #{jds,jdbcType=INTEGER},
+      </if>
+      <if test="gudong != null">
+        gudong = #{gudong,jdbcType=INTEGER},
+      </if>
+      <if test="thsJd != null">
+        ths_jd = #{thsJd,jdbcType=INTEGER},
+      </if>
+      <if test="sdoverTime != null">
+        sdover_time = #{sdoverTime,jdbcType=VARCHAR},
+      </if>
+      <if test="kefuweixin != null">
+        kefuweixin = #{kefuweixin,jdbcType=VARCHAR},
+      </if>
+      <if test="signinJl != null">
+        signin_jl = #{signinJl,jdbcType=DECIMAL},
+      </if>
+      <if test="sdSxfUada != null">
+        sd_sxf_uada = #{sdSxfUada,jdbcType=REAL},
+      </if>
+      <if test="loginstatu != null">
+        loginstatu = #{loginstatu,jdbcType=INTEGER},
+      </if>
+      <if test="regStatu != null">
+        reg_statu = #{regStatu,jdbcType=INTEGER},
+      </if>
+      <if test="txStatu != null">
+        tx_statu = #{txStatu,jdbcType=INTEGER},
+      </if>
+      <if test="cjYzm != null">
+        cj_yzm = #{cjYzm,jdbcType=INTEGER},
+      </if>
+      <if test="ptcb2 != null">
+        ptcb2 = #{ptcb2,jdbcType=INTEGER},
+      </if>
+      <if test="ptcb3 != null">
+        ptcb3 = #{ptcb3,jdbcType=INTEGER},
+      </if>
+      <if test="tj2 != null">
+        tj2 = #{tj2,jdbcType=DECIMAL},
+      </if>
+      <if test="scSf != null">
+        sc_sf = #{scSf,jdbcType=REAL},
+      </if>
+      <if test="scSy != null">
+        sc_sy = #{scSy,jdbcType=REAL},
+      </if>
+      <if test="ksTime != null">
+        ks_time = #{ksTime,jdbcType=VARCHAR},
+      </if>
+      <if test="jsTime != null">
+        js_time = #{jsTime,jdbcType=VARCHAR},
+      </if>
+      <if test="gdfh != null">
+        gdfh = #{gdfh,jdbcType=DECIMAL},
+      </if>
+      <if test="freeze != null">
+        freeze = #{freeze,jdbcType=DECIMAL},
+      </if>
+      <if test="dtss != null">
+        dtss = #{dtss,jdbcType=DECIMAL},
+      </if>
+      <if test="tdss != null">
+        tdss = #{tdss,jdbcType=DECIMAL},
+      </if>
+      <if test="iosDownload != null">
+        ios_download = #{iosDownload,jdbcType=VARCHAR},
+      </if>
+      <if test="iosVe != null">
+        ios_ve = #{iosVe,jdbcType=VARCHAR},
+      </if>
+      <if test="androidDownload != null">
+        android_download = #{androidDownload,jdbcType=VARCHAR},
+      </if>
+      <if test="u2immt != null">
+        u2immt = #{u2immt,jdbcType=REAL},
+      </if>
+      <if test="awardLv1 != null">
+        award_lv1 = #{awardLv1,jdbcType=VARCHAR},
+      </if>
+      <if test="awardLv2 != null">
+        award_lv2 = #{awardLv2,jdbcType=VARCHAR},
+      </if>
+      <if test="awardLv3 != null">
+        award_lv3 = #{awardLv3,jdbcType=VARCHAR},
+      </if>
+      <if test="awardLv4 != null">
+        award_lv4 = #{awardLv4,jdbcType=VARCHAR},
+      </if>
+      <if test="awardLv5 != null">
+        award_lv5 = #{awardLv5,jdbcType=VARCHAR},
+      </if>
+      <if test="bedAward != null">
+        bed_award = #{bedAward,jdbcType=INTEGER},
+      </if>
+      <if test="bedAwardJishu != null">
+        bed_award_jishu = #{bedAwardJishu,jdbcType=INTEGER},
+      </if>
+      <if test="immtDtAward != null">
+        immt_dt_award = #{immtDtAward,jdbcType=INTEGER},
+      </if>
+      <if test="sfZhiyaRate != null">
+        sf_zhiya_rate = #{sfZhiyaRate,jdbcType=DECIMAL},
+      </if>
+      <if test="isDraw != null">
+        is_draw = #{isDraw,jdbcType=INTEGER},
+      </if>
+      <if test="codeImg != null">
+        code_img = #{codeImg,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.itcast.bean.Config">
+    update config
+    set tag = #{tag,jdbcType=VARCHAR},
+      is_up = #{isUp,jdbcType=TINYINT},
+      sd_sxf = #{sdSxf,jdbcType=DECIMAL},
+      tx_sxf = #{txSxf,jdbcType=DECIMAL},
+      download = #{download,jdbcType=VARCHAR},
+      ve = #{ve,jdbcType=VARCHAR},
+      gold = #{gold,jdbcType=INTEGER},
+      wkdjs = #{wkdjs,jdbcType=INTEGER},
+      day_txcs = #{dayTxcs,jdbcType=INTEGER},
+      stop = #{stop,jdbcType=INTEGER},
+      csjw = #{csjw,jdbcType=INTEGER},
+      jw_max = #{jwMax,jdbcType=INTEGER},
+      tj = #{tj,jdbcType=DECIMAL},
+      tjx = #{tjx,jdbcType=DECIMAL},
+      dc_bl = #{dcBl,jdbcType=DECIMAL},
+      fh = #{fh,jdbcType=DECIMAL},
+      jd_yj = #{jdYj,jdbcType=DECIMAL},
+      jds = #{jds,jdbcType=INTEGER},
+      gudong = #{gudong,jdbcType=INTEGER},
+      ths_jd = #{thsJd,jdbcType=INTEGER},
+      sdover_time = #{sdoverTime,jdbcType=VARCHAR},
+      kefuweixin = #{kefuweixin,jdbcType=VARCHAR},
+      signin_jl = #{signinJl,jdbcType=DECIMAL},
+      sd_sxf_uada = #{sdSxfUada,jdbcType=REAL},
+      loginstatu = #{loginstatu,jdbcType=INTEGER},
+      reg_statu = #{regStatu,jdbcType=INTEGER},
+      tx_statu = #{txStatu,jdbcType=INTEGER},
+      cj_yzm = #{cjYzm,jdbcType=INTEGER},
+      ptcb2 = #{ptcb2,jdbcType=INTEGER},
+      ptcb3 = #{ptcb3,jdbcType=INTEGER},
+      tj2 = #{tj2,jdbcType=DECIMAL},
+      sc_sf = #{scSf,jdbcType=REAL},
+      sc_sy = #{scSy,jdbcType=REAL},
+      ks_time = #{ksTime,jdbcType=VARCHAR},
+      js_time = #{jsTime,jdbcType=VARCHAR},
+      gdfh = #{gdfh,jdbcType=DECIMAL},
+      freeze = #{freeze,jdbcType=DECIMAL},
+      dtss = #{dtss,jdbcType=DECIMAL},
+      tdss = #{tdss,jdbcType=DECIMAL},
+      ios_download = #{iosDownload,jdbcType=VARCHAR},
+      ios_ve = #{iosVe,jdbcType=VARCHAR},
+      android_download = #{androidDownload,jdbcType=VARCHAR},
+      u2immt = #{u2immt,jdbcType=REAL},
+      award_lv1 = #{awardLv1,jdbcType=VARCHAR},
+      award_lv2 = #{awardLv2,jdbcType=VARCHAR},
+      award_lv3 = #{awardLv3,jdbcType=VARCHAR},
+      award_lv4 = #{awardLv4,jdbcType=VARCHAR},
+      award_lv5 = #{awardLv5,jdbcType=VARCHAR},
+      bed_award = #{bedAward,jdbcType=INTEGER},
+      bed_award_jishu = #{bedAwardJishu,jdbcType=INTEGER},
+      immt_dt_award = #{immtDtAward,jdbcType=INTEGER},
+      sf_zhiya_rate = #{sfZhiyaRate,jdbcType=DECIMAL},
+      is_draw = #{isDraw,jdbcType=INTEGER},
+      code_img = #{codeImg,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itcast.bean.Config">
+    update config
+    set tag = #{tag,jdbcType=VARCHAR},
+      is_up = #{isUp,jdbcType=TINYINT},
+      sd_sxf = #{sdSxf,jdbcType=DECIMAL},
+      tx_sxf = #{txSxf,jdbcType=DECIMAL},
+      download = #{download,jdbcType=VARCHAR},
+      ve = #{ve,jdbcType=VARCHAR},
+      gold = #{gold,jdbcType=INTEGER},
+      wkdjs = #{wkdjs,jdbcType=INTEGER},
+      day_txcs = #{dayTxcs,jdbcType=INTEGER},
+      stop = #{stop,jdbcType=INTEGER},
+      csjw = #{csjw,jdbcType=INTEGER},
+      jw_max = #{jwMax,jdbcType=INTEGER},
+      tj = #{tj,jdbcType=DECIMAL},
+      tjx = #{tjx,jdbcType=DECIMAL},
+      dc_bl = #{dcBl,jdbcType=DECIMAL},
+      fh = #{fh,jdbcType=DECIMAL},
+      jd_yj = #{jdYj,jdbcType=DECIMAL},
+      jds = #{jds,jdbcType=INTEGER},
+      gudong = #{gudong,jdbcType=INTEGER},
+      ths_jd = #{thsJd,jdbcType=INTEGER},
+      sdover_time = #{sdoverTime,jdbcType=VARCHAR},
+      kefuweixin = #{kefuweixin,jdbcType=VARCHAR},
+      signin_jl = #{signinJl,jdbcType=DECIMAL},
+      sd_sxf_uada = #{sdSxfUada,jdbcType=REAL},
+      loginstatu = #{loginstatu,jdbcType=INTEGER},
+      reg_statu = #{regStatu,jdbcType=INTEGER},
+      tx_statu = #{txStatu,jdbcType=INTEGER},
+      cj_yzm = #{cjYzm,jdbcType=INTEGER},
+      ptcb2 = #{ptcb2,jdbcType=INTEGER},
+      ptcb3 = #{ptcb3,jdbcType=INTEGER},
+      tj2 = #{tj2,jdbcType=DECIMAL},
+      sc_sf = #{scSf,jdbcType=REAL},
+      sc_sy = #{scSy,jdbcType=REAL},
+      ks_time = #{ksTime,jdbcType=VARCHAR},
+      js_time = #{jsTime,jdbcType=VARCHAR},
+      gdfh = #{gdfh,jdbcType=DECIMAL},
+      freeze = #{freeze,jdbcType=DECIMAL},
+      dtss = #{dtss,jdbcType=DECIMAL},
+      tdss = #{tdss,jdbcType=DECIMAL},
+      ios_download = #{iosDownload,jdbcType=VARCHAR},
+      ios_ve = #{iosVe,jdbcType=VARCHAR},
+      android_download = #{androidDownload,jdbcType=VARCHAR},
+      u2immt = #{u2immt,jdbcType=REAL},
+      award_lv1 = #{awardLv1,jdbcType=VARCHAR},
+      award_lv2 = #{awardLv2,jdbcType=VARCHAR},
+      award_lv3 = #{awardLv3,jdbcType=VARCHAR},
+      award_lv4 = #{awardLv4,jdbcType=VARCHAR},
+      award_lv5 = #{awardLv5,jdbcType=VARCHAR},
+      bed_award = #{bedAward,jdbcType=INTEGER},
+      bed_award_jishu = #{bedAwardJishu,jdbcType=INTEGER},
+      immt_dt_award = #{immtDtAward,jdbcType=INTEGER},
+      sf_zhiya_rate = #{sfZhiyaRate,jdbcType=DECIMAL},
+      is_draw = #{isDraw,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

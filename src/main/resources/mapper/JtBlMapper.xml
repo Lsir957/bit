@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itcast.dao.JtBlMapper">
+  <resultMap id="BaseResultMap" type="com.itcast.bean.JtBl">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="freeze" jdbcType="DECIMAL" property="freeze" />
+    <result column="hq_sl" jdbcType="DECIMAL" property="hqSl" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="token_id" jdbcType="INTEGER" property="tokenId" />
+    <result column="day" jdbcType="INTEGER" property="day" />
+    <result column="zz_sxf" jdbcType="DECIMAL" property="zzSxf" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="sl" jdbcType="DECIMAL" property="sl" />
+    <result column="max" jdbcType="DECIMAL" property="max" />
+    <result column="buy_num" jdbcType="DECIMAL" property="buyNum" />
+    <result column="buy_mini" jdbcType="DECIMAL" property="buyMini" />
+    <result column="buy_max" jdbcType="DECIMAL" property="buyMax" />
+    <result column="ft_mini" jdbcType="DECIMAL" property="ftMini" />
+    <result column="kaiguan" jdbcType="INTEGER" property="kaiguan" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.itcast.bean.JtBl">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, freeze, hq_sl, status, token_id, day, zz_sxf, title, type, sl, max, buy_num, 
+    buy_mini, buy_max, ft_mini, kaiguan
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.itcast.bean.JtBlExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from jt_bl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.itcast.bean.JtBlExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from jt_bl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from jt_bl
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from jt_bl
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.itcast.bean.JtBlExample">
+    delete from jt_bl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.itcast.bean.JtBl">
+    insert into jt_bl (id, freeze, hq_sl, 
+      status, token_id, day, zz_sxf, 
+      title, type, sl, max, 
+      buy_num, buy_mini, buy_max, 
+      ft_mini, kaiguan, content
+      )
+    values (#{id,jdbcType=INTEGER}, #{freeze,jdbcType=DECIMAL}, #{hqSl,jdbcType=DECIMAL}, 
+      #{status,jdbcType=BIT}, #{tokenId,jdbcType=INTEGER}, #{day,jdbcType=INTEGER}, #{zzSxf,jdbcType=DECIMAL}, 
+      #{title,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{sl,jdbcType=DECIMAL}, #{max,jdbcType=DECIMAL}, 
+      #{buyNum,jdbcType=DECIMAL}, #{buyMini,jdbcType=DECIMAL}, #{buyMax,jdbcType=DECIMAL}, 
+      #{ftMini,jdbcType=DECIMAL}, #{kaiguan,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.itcast.bean.JtBl">
+    insert into jt_bl
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="freeze != null">
+        freeze,
+      </if>
+      <if test="hqSl != null">
+        hq_sl,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="tokenId != null">
+        token_id,
+      </if>
+      <if test="day != null">
+        day,
+      </if>
+      <if test="zzSxf != null">
+        zz_sxf,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="sl != null">
+        sl,
+      </if>
+      <if test="max != null">
+        max,
+      </if>
+      <if test="buyNum != null">
+        buy_num,
+      </if>
+      <if test="buyMini != null">
+        buy_mini,
+      </if>
+      <if test="buyMax != null">
+        buy_max,
+      </if>
+      <if test="ftMini != null">
+        ft_mini,
+      </if>
+      <if test="kaiguan != null">
+        kaiguan,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="freeze != null">
+        #{freeze,jdbcType=DECIMAL},
+      </if>
+      <if test="hqSl != null">
+        #{hqSl,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="tokenId != null">
+        #{tokenId,jdbcType=INTEGER},
+      </if>
+      <if test="day != null">
+        #{day,jdbcType=INTEGER},
+      </if>
+      <if test="zzSxf != null">
+        #{zzSxf,jdbcType=DECIMAL},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="sl != null">
+        #{sl,jdbcType=DECIMAL},
+      </if>
+      <if test="max != null">
+        #{max,jdbcType=DECIMAL},
+      </if>
+      <if test="buyNum != null">
+        #{buyNum,jdbcType=DECIMAL},
+      </if>
+      <if test="buyMini != null">
+        #{buyMini,jdbcType=DECIMAL},
+      </if>
+      <if test="buyMax != null">
+        #{buyMax,jdbcType=DECIMAL},
+      </if>
+      <if test="ftMini != null">
+        #{ftMini,jdbcType=DECIMAL},
+      </if>
+      <if test="kaiguan != null">
+        #{kaiguan,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.itcast.bean.JtBlExample" resultType="java.lang.Long">
+    select count(*) from jt_bl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update jt_bl
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.freeze != null">
+        freeze = #{record.freeze,jdbcType=DECIMAL},
+      </if>
+      <if test="record.hqSl != null">
+        hq_sl = #{record.hqSl,jdbcType=DECIMAL},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=BIT},
+      </if>
+      <if test="record.tokenId != null">
+        token_id = #{record.tokenId,jdbcType=INTEGER},
+      </if>
+      <if test="record.day != null">
+        day = #{record.day,jdbcType=INTEGER},
+      </if>
+      <if test="record.zzSxf != null">
+        zz_sxf = #{record.zzSxf,jdbcType=DECIMAL},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.sl != null">
+        sl = #{record.sl,jdbcType=DECIMAL},
+      </if>
+      <if test="record.max != null">
+        max = #{record.max,jdbcType=DECIMAL},
+      </if>
+      <if test="record.buyNum != null">
+        buy_num = #{record.buyNum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.buyMini != null">
+        buy_mini = #{record.buyMini,jdbcType=DECIMAL},
+      </if>
+      <if test="record.buyMax != null">
+        buy_max = #{record.buyMax,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ftMini != null">
+        ft_mini = #{record.ftMini,jdbcType=DECIMAL},
+      </if>
+      <if test="record.kaiguan != null">
+        kaiguan = #{record.kaiguan,jdbcType=INTEGER},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update jt_bl
+    set id = #{record.id,jdbcType=INTEGER},
+      freeze = #{record.freeze,jdbcType=DECIMAL},
+      hq_sl = #{record.hqSl,jdbcType=DECIMAL},
+      status = #{record.status,jdbcType=BIT},
+      token_id = #{record.tokenId,jdbcType=INTEGER},
+      day = #{record.day,jdbcType=INTEGER},
+      zz_sxf = #{record.zzSxf,jdbcType=DECIMAL},
+      title = #{record.title,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      sl = #{record.sl,jdbcType=DECIMAL},
+      max = #{record.max,jdbcType=DECIMAL},
+      buy_num = #{record.buyNum,jdbcType=DECIMAL},
+      buy_mini = #{record.buyMini,jdbcType=DECIMAL},
+      buy_max = #{record.buyMax,jdbcType=DECIMAL},
+      ft_mini = #{record.ftMini,jdbcType=DECIMAL},
+      kaiguan = #{record.kaiguan,jdbcType=INTEGER},
+      content = #{record.content,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update jt_bl
+    set id = #{record.id,jdbcType=INTEGER},
+      freeze = #{record.freeze,jdbcType=DECIMAL},
+      hq_sl = #{record.hqSl,jdbcType=DECIMAL},
+      status = #{record.status,jdbcType=BIT},
+      token_id = #{record.tokenId,jdbcType=INTEGER},
+      day = #{record.day,jdbcType=INTEGER},
+      zz_sxf = #{record.zzSxf,jdbcType=DECIMAL},
+      title = #{record.title,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      sl = #{record.sl,jdbcType=DECIMAL},
+      max = #{record.max,jdbcType=DECIMAL},
+      buy_num = #{record.buyNum,jdbcType=DECIMAL},
+      buy_mini = #{record.buyMini,jdbcType=DECIMAL},
+      buy_max = #{record.buyMax,jdbcType=DECIMAL},
+      ft_mini = #{record.ftMini,jdbcType=DECIMAL},
+      kaiguan = #{record.kaiguan,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itcast.bean.JtBl">
+    update jt_bl
+    <set>
+      <if test="freeze != null">
+        freeze = #{freeze,jdbcType=DECIMAL},
+      </if>
+      <if test="hqSl != null">
+        hq_sl = #{hqSl,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="tokenId != null">
+        token_id = #{tokenId,jdbcType=INTEGER},
+      </if>
+      <if test="day != null">
+        day = #{day,jdbcType=INTEGER},
+      </if>
+      <if test="zzSxf != null">
+        zz_sxf = #{zzSxf,jdbcType=DECIMAL},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="sl != null">
+        sl = #{sl,jdbcType=DECIMAL},
+      </if>
+      <if test="max != null">
+        max = #{max,jdbcType=DECIMAL},
+      </if>
+      <if test="buyNum != null">
+        buy_num = #{buyNum,jdbcType=DECIMAL},
+      </if>
+      <if test="buyMini != null">
+        buy_mini = #{buyMini,jdbcType=DECIMAL},
+      </if>
+      <if test="buyMax != null">
+        buy_max = #{buyMax,jdbcType=DECIMAL},
+      </if>
+      <if test="ftMini != null">
+        ft_mini = #{ftMini,jdbcType=DECIMAL},
+      </if>
+      <if test="kaiguan != null">
+        kaiguan = #{kaiguan,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.itcast.bean.JtBl">
+    update jt_bl
+    set freeze = #{freeze,jdbcType=DECIMAL},
+      hq_sl = #{hqSl,jdbcType=DECIMAL},
+      status = #{status,jdbcType=BIT},
+      token_id = #{tokenId,jdbcType=INTEGER},
+      day = #{day,jdbcType=INTEGER},
+      zz_sxf = #{zzSxf,jdbcType=DECIMAL},
+      title = #{title,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      sl = #{sl,jdbcType=DECIMAL},
+      max = #{max,jdbcType=DECIMAL},
+      buy_num = #{buyNum,jdbcType=DECIMAL},
+      buy_mini = #{buyMini,jdbcType=DECIMAL},
+      buy_max = #{buyMax,jdbcType=DECIMAL},
+      ft_mini = #{ftMini,jdbcType=DECIMAL},
+      kaiguan = #{kaiguan,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itcast.bean.JtBl">
+    update jt_bl
+    set freeze = #{freeze,jdbcType=DECIMAL},
+      hq_sl = #{hqSl,jdbcType=DECIMAL},
+      status = #{status,jdbcType=BIT},
+      token_id = #{tokenId,jdbcType=INTEGER},
+      day = #{day,jdbcType=INTEGER},
+      zz_sxf = #{zzSxf,jdbcType=DECIMAL},
+      title = #{title,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      sl = #{sl,jdbcType=DECIMAL},
+      max = #{max,jdbcType=DECIMAL},
+      buy_num = #{buyNum,jdbcType=DECIMAL},
+      buy_mini = #{buyMini,jdbcType=DECIMAL},
+      buy_max = #{buyMax,jdbcType=DECIMAL},
+      ft_mini = #{ftMini,jdbcType=DECIMAL},
+      kaiguan = #{kaiguan,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

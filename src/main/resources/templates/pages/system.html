@@ -1,0 +1,463 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+    <meta name="description" content="bootstrap default admin template">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>后台管理系统</title>
+
+
+    <!-- Start global css -->
+    <link rel="stylesheet" href="../../static/assets/global/plugins/Waves/dist/waves.min.css"/>
+    <link rel="stylesheet" href="../../static/assets/global/plugins/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../static/assets/icons_fonts/font-awesome/css/font-awesome.min.css"/>
+    <!-- End global css -->
+
+    <!-- Start page plugin css -->
+    <link rel="stylesheet" href="../../static/assets/global/plugins/animate.css/animate.min.css"/>
+    <!-- End page plugin css -->
+
+    <!-- Start template global css -->
+    <link rel="stylesheet" href="../../static/assets/global/css/components.min.css"/>
+    <!-- End template global css -->
+
+    <!-- Start layout css -->
+    <link rel="stylesheet" href="../../static/assets/layouts/layouts_left_menu/left_menu_layout.min.css"/>
+    <!-- End layout css -->
+
+    <!-- Start favicon ico -->
+    <link rel="icon" href="../../static/assets/favicon/prince.ico" type="image/x-icon"/>
+    <link rel="icon" type="image/png" sizes="192x192" href="../../static/assets/favicon/prince-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../static/assets/favicon/prince-180x180.png">
+    <!-- End favicon ico -->
+
+</head>
+<body class="nav-medium">
+<div class="container body">
+    <div class="main_container">
+            <!-- Start Loader -->
+<div class="page-loader">
+    <div class="preloader loading">
+        <span class="slice"></span>
+        <span class="slice"></span>
+        <span class="slice"></span>
+        <span class="slice"></span>
+        <span class="slice"></span>
+        <span class="slice"></span>
+    </div>
+</div>
+<!-- End Loader -->
+
+<!-- Start Scroll Top -->
+<a href="javascript:" id="scroll" style="display: none;"><span></span></a>
+<!-- End Scroll Top -->
+
+<!-- start Left Menu-->
+<div class="col-md-3 left_color">
+    <div class="left_color scroll-view">
+        <div class="navbar nav_title">
+            <a href="../../../webapp/index.html" class="medium-logo">
+                <img src="../../static/assets/global/images/prince_logo.png" alt="medium-logo">
+            </a>
+            <a href="../../../webapp/index.html" class="small-logo">
+                <img src="../../static/assets/global/images/prince_logo2.png" alt="small-logo">
+            </a>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <!-- sidebar menu -->
+        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+                <h3>General</h3>
+                <ul class="nav side-menu">
+                    <li><a class="waves-effect waves-light" href="../../../webapp/index.html"><i class="fa fa-home"></i>首页</a></li>
+                    <li><a class="waves-effect waves-light"><i class="fa fa-desktop"></i>站点管理<span
+                            class="fa fa-chevron-right"></span></a>
+                        <ul class="nav child_menu">
+                            <li> <a class="waves-effect waves-light" href="dt_award.html">动态奖励比例</a></li>
+                            <li> <a class="waves-effect waves-light" href="vip.html">奖金设置</a></li>
+                            <li> <a class="waves-effect waves-light" href="system.html">系统参数</a></li>
+                            <li> <a class="waves-effect waves-light" href="coin_type.html">币种管理</a></li>
+                            <li> <a class="waves-effect waves-light" href="pwd.html">修改密码</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="waves-effect waves-light"><i class="fa fa-user-circle-o"></i>用户管理<span
+                            class="fa fa-chevron-right"></span></a>
+                        <ul class="nav child_menu">
+                            <li> <a class="waves-effect waves-light" href="userslist.html">用户列表</a></li>
+                            <li> <a class="waves-effect waves-light" href="shu.html">团队树状图</a></li>
+                            <li> <a class="waves-effect waves-light" href="shu_new.html">团队树状图NEW</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="waves-effect waves-light"><i class="fa fa-user-circle-o"></i>财务管理<span
+                                class="fa fa-chevron-right"></span></a>
+                        <ul class="nav child_menu">
+                            <li> <a class="waves-effect waves-light" href="member_data.html">会员数据</a></li>
+                        </ul>
+                    </li>
+                    <li><a  class="waves-effect waves-light"><i class="fa fa-cube"></i>矿机管理<span class="fa fa-chevron-right"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a class="waves-effect waves-light" href="cate.html">矿机种类</a></li>
+                            <li><a class="waves-effect waves-light" href="miner_list.html">矿机列表</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="waves-effect waves-light"><i class="fa fa-money"></i>收益记录<span class="fa fa-chevron-right"></span></a>
+                        <ul class="nav child_menu">
+                            <li> <a class="waves-effect waves-light" href="buy_list.html">购买记录</a></li>
+                            <li> <a class="waves-effect waves-light" href="bouns_list.html">分红记录</a></li>
+                            <li> <a class="waves-effect waves-light" href="zhiya_list.html">BED质押记录</a></li>
+                            <li> <a class="waves-effect waves-light" href="bill_tg_list.html">矿池转账记录</a></li>
+                            <li> <a class="waves-effect waves-light" href="kuangji.html">收益记录</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="waves-effect waves-light"><i class="fa fa-money"></i>平台数据<span
+                            class="fa fa-chevron-right"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a class="waves-effect waves-light" href="xq_bonus.html">平台数据</a></li>
+                            <li><a class="waves-effect waves-light" href="jihua.html">平台信息</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="waves-effect waves-light" href="exchange.html"><i class="fa fa-btc"></i>兑换记录</a></li>
+                    <li><a class="waves-effect waves-light"><i class="fa fa-window-maximize"></i>公告快讯<span
+                            class="fa fa-chevron-right"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a class="waves-effect waves-light" href="notice.html">发布公告</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="waves-effect waves-light"><i class="fa fa-balance-scale"></i>充提管理<span
+                            class="fa fa-chevron-right"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a class="waves-effect waves-light" href="examine_eth.html">提现ETH审核</a></li>
+                            <li><a class="waves-effect waves-light" href="examine_immt.html">提现IMMT审核</a></li>
+                            <li><a class="waves-effect waves-light" href="examine_bed.html">提现BED审核</a></li>
+                            <li><a class="waves-effect waves-light" href="transfer2.html">提现记录</a></li>
+                            <li><a class="waves-effect waves-light" href="notran.html">提现驳回</a></li>
+                            <li><a class="waves-effect waves-light" href="recharge2.html">充值记录</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="waves-effect waves-light" href="adm_thelog.html"><i class="fa fa-edit"></i>操作日志</a></li>
+                    <li><a class="waves-effect waves-light" href="lun.html"><i class="fa fa-picture-o"></i>轮播图</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /sidebar menu -->
+
+        <!-- /menu footer buttons -->
+        <div class="sidebar-footer hidden-small">
+            <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                <span class="fa fa-power-off" aria-hidden="true"></span>
+            </a>
+        </div>
+        <!-- /menu footer buttons -->
+    </div>
+</div>
+<!-- End Left Menu -->
+
+<!-- start top navigation -->
+<div class="top_nav">
+    <div class="nav_menu">
+        <nav>
+            <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                <div class="responsive-logo">
+                    <a href="../../../webapp/index.html">
+                        <img src="../../static/assets/global/images/prince_logo.png" alt="main-logo">
+                    </a>
+                </div>
+            </div>
+
+            <div class="topbar-right">
+                <div class="nav navbar-nav navbar-right">
+
+                    <div class="header-search right-icon">
+                        <form role="search" class="search-box">
+                            <input placeholder="Search..." class="form-control" type="text">
+                            <a href="javascript:">
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </form>
+                    </div>
+
+                    <div class="dropdown header-notification right-icon">
+                        <a href="javascript:" class="dropdown-toggle waves-effect waves-light notification-icon"
+                           data-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-bell-o" aria-hidden="true"></i>
+                            <span class="label label-danger">4</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="text-center">
+                                <p class="notification-title">Notification<span
+                                            class="label label-primary">4</span></p>
+                            </li>
+                            <li class="list-group default-scroll">
+                                <a href="javascript:;" class="list-group-item">
+                                    <div class="media">
+                                        <div class="pull-left">
+                                            <img src="../../static/assets/global/images/user1.jpg" alt="user">
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="media-heading"><span>Domance Den</span> posted a photo on
+                                                your wall.</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="javascript:;" class="list-group-item">
+                                    <div class="media">
+                                        <div class="pull-left">
+                                            <img src="../../static/assets/global/images/user2.jpg" alt="user">
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="media-heading"><span>Wikko Menta</span> commented on your
+                                                last video.</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="javascript:;" class="list-group-item">
+                                    <div class="media">
+                                        <div class="pull-left">
+                                            <img src="../../static/assets/global/images/user3.jpg" alt="user">
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="media-heading"><span>Jonny Sem</span> posted 4 comments
+                                                on your photo.</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="javascript:;" class="list-group-item">
+                                    <div class="media">
+                                        <div class="pull-left">
+                                            <img src="../../static/assets/global/images/user4.jpg" alt="user">
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="media-heading"><span>Doli Senga</span> posted a photo on
+                                                your wall.</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="javascript:;" class="list-group-item">
+                                    <div class="media">
+                                        <div class="pull-left">
+                                            <img src="../../static/assets/global/images/user5.jpg" alt="user">
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="media-heading"><span>Bhura Kenta</span> commented on your
+                                                last video.</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="javascript:;" class="list-group-item">
+                                    <div class="media">
+                                        <div class="pull-left">
+                                            <img src="../../static/assets/global/images/user6.jpg" alt="user">
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="media-heading"><span>Jolly Baby</span> posted 2 comments
+                                                on your photo.</h5>
+                                        </div>
+                                    </div>
+                                </a>
+
+                            </li>
+                            <li class="all-notification">
+                                <a href="javascript:;" class="list-group-item text-right">
+                                    <small>See all notifications</small>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="header-fullscreen right-icon">
+                        <a href="javascript:" class="waves-effect waves-light toggle-fullscreen">
+                            <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+                        </a>
+                    </div>
+
+                    <!--<div class="header-chat right-icon">
+                        <a href="javascript:" class="waves-effect waves-light">
+                            <i class="fa fa-comments-o" aria-hidden="true"></i>
+                        </a>
+                    </div>-->
+
+                    <div class="dropdown user-profile right-icon">
+                        <a href="javascript:" class="dropdown-toggle waves-effect waves-light"
+                           data-toggle="dropdown"
+                           aria-expanded="false">
+                            <img src="../../static/assets/global/images/user10.jpg" alt="user">
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="javascript:" class="waves-effect waves-light">
+                                    <i class="fa fa-user" aria-hidden="true"></i>Profile</a>
+                            </li>
+                            <li><a href="javascript:" class="waves-effect waves-light">
+                                    <i class="fa fa-cog" aria-hidden="true"></i>Settings</a>
+                            </li>
+                            <li><a href="javascript:" class="waves-effect waves-light">
+                                    <i class="fa fa-lock" aria-hidden="true"></i>Lock screen</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="javascript:" class="waves-effect waves-light">
+                                    <i class="fa fa-power-off text-danger" aria-hidden="true"></i> Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+        </nav>
+    </div>
+</div>
+<div class="clearfix"></div>
+<!-- End top navigation -->
+    <!-- Start Contain Section -->
+    <div class="container-fluid right_color">
+
+
+        <div class="contain-section dropdown-page-section">
+            <div class="page-main-header">
+                <!-- Page Title -->
+                <h2 class="page-name-title">参数设置</h2>
+
+            </div>
+
+            <div class="contain-inner-section">
+
+                <div class="row">
+
+                    <div class="col-lg-12">
+
+                        <div class="main-box">
+
+                            <header class="main-box-header clearfix">
+                                <h5>参数设置</h5>
+                            </header>
+                            <div class="main-box-body clearfix">
+                                <form class="form-horizontal" action="/gfa/install/save.html" enctype="multipart/form-data" method="post">
+
+                                    <div class="form-group">
+                                        <label for="inputText3" class="col-lg-2 control-label">平台BED总算力：<span style="color:red;"></span></label>
+                                        <div class="col-lg-10">
+                                            <input type="text" disabled="" value="34472"> </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputText3" class="col-lg-2 control-label">提现开关（1：允许；0：禁止）：<span style="color:red;"></span></label>
+                                        <div class="col-lg-10">
+                                            <input type="text" name="is_draw" value="1"></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputText3" class="col-lg-2 control-label">bed分红基数<span style="color:red;"></span></label>
+                                        <div class="col-lg-10">
+                                            <input type="text" class="form-control" name="bed_award_jishu" value="8903">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputText3" class="col-lg-2 control-label">BED分红开关,0关闭1开启<span style="color:red;"></span></label>
+                                        <div class="col-lg-10">
+                                            <input type="text" class="form-control" name="bed_award" value="1">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputText3" class="col-lg-2 control-label">IMMT动态收益总开关,0关闭1开启<span style="color:red;"></span></label>
+                                        <div class="col-lg-10">
+                                            <input type="text" class="form-control" name="immt_dt_award" value="0">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputText3" class="col-lg-2 control-label">质押释放比例<span style="color:red;"></span></label>
+                                        <div class="col-lg-10">
+                                            <input type="text" class="form-control" name="sf_zhiya_rate" value="0.00230">
+                                        </div>
+                                    </div>
+                                    <!--
+                                                                <div class="form-group">
+                                                                    <label for="inputText3" class="col-lg-2 control-label">客服邮箱<span style='color:red;'></span></label>
+                                                                    <div class="col-lg-10">
+                                                                    <input type="text" class="form-control" name="kefuweixin" value=""></div>
+                                                                </div> -->
+
+                                    <!-- <div class="form-group">
+                                        <label for="inputText3" class="col-lg-2 control-label">APP下载网址<span style='color:red;'></span></label>
+                                        <div class="col-lg-10">
+                                        <input type="text" class="form-control" name="download" value="http://goe-coin.com/index.php/index/login/download"></div>
+                                    </div> -->
+
+                                    <div class="form-group">
+                                        <label for="inputText3" class="col-lg-2 control-label">APP版本号<span style="color:red;"></span></label>
+                                        <div class="col-lg-10">
+                                            <input type="text" class="form-control" name="ve" value="2.0.9"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputText3" class="col-lg-2 control-label">Android下载地址<span style="color:red;"></span></label>
+                                        <div class="col-lg-10">
+                                            <input type="text" class="form-control" name="android_download" value="http://fenfa.mochun1.com/app.php/MjA5NA=="></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputText3" class="col-lg-2 control-label">IOS下载网址<span style="color:red;"></span></label>
+                                        <div class="col-lg-10">
+                                            <input type="text" class="form-control" name="ios_download" value="http://fenfa.mochun1.com/app.php/MjA4OQ=="></div>
+                                    </div>
+
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <label class="btn btn-primary  active focus">
+                                            <input type="radio" name="is_up" id="option1" checked="" value="1">强制更新APP
+                                        </label>
+                                        <label class="btn btn-primary ">
+                                            <input type="radio" name="is_up" id="option2" value="0">选择更新
+                                        </label>
+                                    </div>
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <label class="btn btn-primary ">
+                                            <input type="radio" name="reg_statu" id="reg_statu" value="1">停止注册
+                                        </label>
+                                        <label class="btn btn-primary  active focus">
+                                            <input type="radio" name="reg_statu" id="reg_statu" checked="" value="0">正常注册
+                                        </label>
+                                    </div>
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <label class="btn btn-primary ">
+                                            <input type="radio" name="loginstatu" id="loginstatu" value="1">停止登录
+                                        </label>
+                                        <label class="btn btn-primary  active focus">
+                                            <input type="radio" name="loginstatu" id="loginstatu" checked="" value="0">正常登陆
+                                        </label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10" style="margin-top:20px;">
+                                            <button type="submit" id="submit" class="btn btn-success"><i class="fa fa-save"></i> 保存/更新</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- End Contain Section -->    <!-- Start Footer Section -->    <footer class="footer">        © 2018 All rights reserved. Template designed by <a class="text-primary" href="http://www.bootstrapmb.com/">Prince</a>    </footer>    <!-- End Footer Section -->
+</div>
+</div>
+
+<!-- Start core js -->
+<script src="../../static/assets/global/plugins/jquery/dist/jquery.min.js"></script>
+<script src="../../static/assets/global/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../../static/assets/global/plugins/Waves/dist/waves.min.js"></script>
+<script src="../../static/assets/global/plugins/screenfull.js/dist/screenfull.min.js"></script>
+<script src="../../static/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+<!-- Start core javascript -->
+
+<!-- Start global js -->
+<script src="../../static/assets/global/js/left-menu.min.js"></script>
+<!-- End global js -->
+
+
+<!-- Start page js -->
+
+<!-- End page js -->
+
+</body>
+</html>

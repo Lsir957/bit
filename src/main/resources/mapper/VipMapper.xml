@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itcast.dao.VipMapper">
+  <resultMap id="BaseResultMap" type="com.itcast.bean.Vip">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="zsl" jdbcType="INTEGER" property="zsl" />
+    <result column="freeze" jdbcType="DECIMAL" property="freeze" />
+    <result column="tdrs" jdbcType="INTEGER" property="tdrs" />
+    <result column="ds" jdbcType="INTEGER" property="ds" />
+    <result column="sxlv" jdbcType="INTEGER" property="sxlv" />
+    <result column="lv" jdbcType="TINYINT" property="lv" />
+    <result column="name_en" jdbcType="VARCHAR" property="nameEn" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="zt" jdbcType="INTEGER" property="zt" />
+    <result column="lvimg1" jdbcType="VARCHAR" property="lvimg1" />
+    <result column="lvimg2" jdbcType="VARCHAR" property="lvimg2" />
+    <result column="bili_jd" jdbcType="DECIMAL" property="biliJd" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, zsl, freeze, tdrs, ds, sxlv, lv, name_en, name, zt, lvimg1, lvimg2, bili_jd
+  </sql>
+  <select id="selectByExample" parameterType="com.itcast.bean.VipExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from vip
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from vip
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from vip
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.itcast.bean.VipExample">
+    delete from vip
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.itcast.bean.Vip">
+    insert into vip (id, zsl, freeze, 
+      tdrs, ds, sxlv, lv, 
+      name_en, name, zt, lvimg1, 
+      lvimg2, bili_jd)
+    values (#{id,jdbcType=INTEGER}, #{zsl,jdbcType=INTEGER}, #{freeze,jdbcType=DECIMAL}, 
+      #{tdrs,jdbcType=INTEGER}, #{ds,jdbcType=INTEGER}, #{sxlv,jdbcType=INTEGER}, #{lv,jdbcType=TINYINT}, 
+      #{nameEn,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{zt,jdbcType=INTEGER}, #{lvimg1,jdbcType=VARCHAR}, 
+      #{lvimg2,jdbcType=VARCHAR}, #{biliJd,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.itcast.bean.Vip">
+    insert into vip
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="zsl != null">
+        zsl,
+      </if>
+      <if test="freeze != null">
+        freeze,
+      </if>
+      <if test="tdrs != null">
+        tdrs,
+      </if>
+      <if test="ds != null">
+        ds,
+      </if>
+      <if test="sxlv != null">
+        sxlv,
+      </if>
+      <if test="lv != null">
+        lv,
+      </if>
+      <if test="nameEn != null">
+        name_en,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="zt != null">
+        zt,
+      </if>
+      <if test="lvimg1 != null">
+        lvimg1,
+      </if>
+      <if test="lvimg2 != null">
+        lvimg2,
+      </if>
+      <if test="biliJd != null">
+        bili_jd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="zsl != null">
+        #{zsl,jdbcType=INTEGER},
+      </if>
+      <if test="freeze != null">
+        #{freeze,jdbcType=DECIMAL},
+      </if>
+      <if test="tdrs != null">
+        #{tdrs,jdbcType=INTEGER},
+      </if>
+      <if test="ds != null">
+        #{ds,jdbcType=INTEGER},
+      </if>
+      <if test="sxlv != null">
+        #{sxlv,jdbcType=INTEGER},
+      </if>
+      <if test="lv != null">
+        #{lv,jdbcType=TINYINT},
+      </if>
+      <if test="nameEn != null">
+        #{nameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="zt != null">
+        #{zt,jdbcType=INTEGER},
+      </if>
+      <if test="lvimg1 != null">
+        #{lvimg1,jdbcType=VARCHAR},
+      </if>
+      <if test="lvimg2 != null">
+        #{lvimg2,jdbcType=VARCHAR},
+      </if>
+      <if test="biliJd != null">
+        #{biliJd,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.itcast.bean.VipExample" resultType="java.lang.Long">
+    select count(*) from vip
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update vip
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.zsl != null">
+        zsl = #{record.zsl,jdbcType=INTEGER},
+      </if>
+      <if test="record.freeze != null">
+        freeze = #{record.freeze,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tdrs != null">
+        tdrs = #{record.tdrs,jdbcType=INTEGER},
+      </if>
+      <if test="record.ds != null">
+        ds = #{record.ds,jdbcType=INTEGER},
+      </if>
+      <if test="record.sxlv != null">
+        sxlv = #{record.sxlv,jdbcType=INTEGER},
+      </if>
+      <if test="record.lv != null">
+        lv = #{record.lv,jdbcType=TINYINT},
+      </if>
+      <if test="record.nameEn != null">
+        name_en = #{record.nameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zt != null">
+        zt = #{record.zt,jdbcType=INTEGER},
+      </if>
+      <if test="record.lvimg1 != null">
+        lvimg1 = #{record.lvimg1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lvimg2 != null">
+        lvimg2 = #{record.lvimg2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.biliJd != null">
+        bili_jd = #{record.biliJd,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update vip
+    set id = #{record.id,jdbcType=INTEGER},
+      zsl = #{record.zsl,jdbcType=INTEGER},
+      freeze = #{record.freeze,jdbcType=DECIMAL},
+      tdrs = #{record.tdrs,jdbcType=INTEGER},
+      ds = #{record.ds,jdbcType=INTEGER},
+      sxlv = #{record.sxlv,jdbcType=INTEGER},
+      lv = #{record.lv,jdbcType=TINYINT},
+      name_en = #{record.nameEn,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      zt = #{record.zt,jdbcType=INTEGER},
+      lvimg1 = #{record.lvimg1,jdbcType=VARCHAR},
+      lvimg2 = #{record.lvimg2,jdbcType=VARCHAR},
+      bili_jd = #{record.biliJd,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itcast.bean.Vip">
+    update vip
+    <set>
+      <if test="zsl != null">
+        zsl = #{zsl,jdbcType=INTEGER},
+      </if>
+      <if test="freeze != null">
+        freeze = #{freeze,jdbcType=DECIMAL},
+      </if>
+      <if test="tdrs != null">
+        tdrs = #{tdrs,jdbcType=INTEGER},
+      </if>
+      <if test="ds != null">
+        ds = #{ds,jdbcType=INTEGER},
+      </if>
+      <if test="sxlv != null">
+        sxlv = #{sxlv,jdbcType=INTEGER},
+      </if>
+      <if test="lv != null">
+        lv = #{lv,jdbcType=TINYINT},
+      </if>
+      <if test="nameEn != null">
+        name_en = #{nameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="zt != null">
+        zt = #{zt,jdbcType=INTEGER},
+      </if>
+      <if test="lvimg1 != null">
+        lvimg1 = #{lvimg1,jdbcType=VARCHAR},
+      </if>
+      <if test="lvimg2 != null">
+        lvimg2 = #{lvimg2,jdbcType=VARCHAR},
+      </if>
+      <if test="biliJd != null">
+        bili_jd = #{biliJd,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itcast.bean.Vip">
+    update vip
+    set zsl = #{zsl,jdbcType=INTEGER},
+      freeze = #{freeze,jdbcType=DECIMAL},
+      tdrs = #{tdrs,jdbcType=INTEGER},
+      ds = #{ds,jdbcType=INTEGER},
+      sxlv = #{sxlv,jdbcType=INTEGER},
+      lv = #{lv,jdbcType=TINYINT},
+      name_en = #{nameEn,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      zt = #{zt,jdbcType=INTEGER},
+      lvimg1 = #{lvimg1,jdbcType=VARCHAR},
+      lvimg2 = #{lvimg2,jdbcType=VARCHAR},
+      bili_jd = #{biliJd,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

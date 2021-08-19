@@ -1,0 +1,1172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itcast.dao.MiniUsersDeleteMapper">
+  <resultMap id="BaseResultMap" type="com.itcast.bean.MiniUsersDelete">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="org_pwd" jdbcType="VARCHAR" property="orgPwd" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="regdate" jdbcType="INTEGER" property="regdate" />
+    <result column="loginip" jdbcType="CHAR" property="loginip" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="refer" jdbcType="INTEGER" property="refer" />
+    <result column="refer_mobile" jdbcType="VARCHAR" property="referMobile" />
+    <result column="last_login" jdbcType="INTEGER" property="lastLogin" />
+    <result column="wechat_openid" jdbcType="VARCHAR" property="wechatOpenid" />
+    <result column="gold" jdbcType="DECIMAL" property="gold" />
+    <result column="ipaddress" jdbcType="VARCHAR" property="ipaddress" />
+    <result column="card" jdbcType="VARCHAR" property="card" />
+    <result column="incode" jdbcType="INTEGER" property="incode" />
+    <result column="yeji" jdbcType="DECIMAL" property="yeji" />
+    <result column="lv" jdbcType="BIT" property="lv" />
+    <result column="freeze" jdbcType="DECIMAL" property="freeze" />
+    <result column="oldnum" jdbcType="DECIMAL" property="oldnum" />
+    <result column="cash" jdbcType="INTEGER" property="cash" />
+    <result column="tree" jdbcType="VARCHAR" property="tree" />
+    <result column="paytime" jdbcType="INTEGER" property="paytime" />
+    <result column="paypwd" jdbcType="VARCHAR" property="paypwd" />
+    <result column="tree2" jdbcType="VARCHAR" property="tree2" />
+    <result column="tdrs" jdbcType="INTEGER" property="tdrs" />
+    <result column="ztrs" jdbcType="INTEGER" property="ztrs" />
+    <result column="dj_status" jdbcType="BIT" property="djStatus" />
+    <result column="max_lv" jdbcType="BIT" property="maxLv" />
+    <result column="avatar" jdbcType="INTEGER" property="avatar" />
+    <result column="yeji2" jdbcType="DECIMAL" property="yeji2" />
+    <result column="refer2" jdbcType="VARCHAR" property="refer2" />
+    <result column="gespwd" jdbcType="VARCHAR" property="gespwd" />
+    <result column="is_ht_vip" jdbcType="INTEGER" property="isHtVip" />
+    <result column="store_points" jdbcType="DECIMAL" property="storePoints" />
+    <result column="pid" jdbcType="INTEGER" property="pid" />
+    <result column="p2_id" jdbcType="INTEGER" property="p2Id" />
+    <result column="p3_id" jdbcType="INTEGER" property="p3Id" />
+    <result column="p4_id" jdbcType="INTEGER" property="p4Id" />
+    <result column="p5_id" jdbcType="INTEGER" property="p5Id" />
+    <result column="usdt_num" jdbcType="REAL" property="usdtNum" />
+    <result column="bed_num" jdbcType="VARCHAR" property="bedNum" />
+    <result column="immt_num" jdbcType="VARCHAR" property="immtNum" />
+    <result column="th_award_lv" jdbcType="INTEGER" property="thAwardLv" />
+    <result column="award_lv" jdbcType="INTEGER" property="awardLv" />
+    <result column="dt_award_day" jdbcType="VARCHAR" property="dtAwardDay" />
+    <result column="tb_num" jdbcType="INTEGER" property="tbNum" />
+    <result column="buy_tb_day" jdbcType="VARCHAR" property="buyTbDay" />
+    <result column="th_num" jdbcType="INTEGER" property="thNum" />
+    <result column="bed_award_day" jdbcType="VARCHAR" property="bedAwardDay" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.itcast.bean.MiniUsersDeleteWithBLOBs">
+    <result column="code_img" jdbcType="LONGVARCHAR" property="codeImg" />
+    <result column="gflag" jdbcType="LONGVARCHAR" property="gflag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, uuid, username, name, org_pwd, password, nickname, email, mobile, regdate, loginip, 
+    salt, status, refer, refer_mobile, last_login, wechat_openid, gold, ipaddress, card, 
+    incode, yeji, lv, freeze, oldnum, cash, tree, paytime, paypwd, tree2, tdrs, ztrs, 
+    dj_status, max_lv, avatar, yeji2, refer2, gespwd, is_ht_vip, store_points, pid, p2_id, 
+    p3_id, p4_id, p5_id, usdt_num, bed_num, immt_num, th_award_lv, award_lv, dt_award_day, 
+    tb_num, buy_tb_day, th_num, bed_award_day
+  </sql>
+  <sql id="Blob_Column_List">
+    code_img, gflag
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.itcast.bean.MiniUsersDeleteExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from mini_users_delete
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.itcast.bean.MiniUsersDeleteExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mini_users_delete
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from mini_users_delete
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from mini_users_delete
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.itcast.bean.MiniUsersDeleteExample">
+    delete from mini_users_delete
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.itcast.bean.MiniUsersDeleteWithBLOBs">
+    insert into mini_users_delete (id, uuid, username, 
+      name, org_pwd, password, 
+      nickname, email, mobile, 
+      regdate, loginip, salt, 
+      status, refer, refer_mobile, 
+      last_login, wechat_openid, gold, 
+      ipaddress, card, incode, 
+      yeji, lv, freeze, oldnum, 
+      cash, tree, paytime, 
+      paypwd, tree2, tdrs, 
+      ztrs, dj_status, max_lv, avatar, 
+      yeji2, refer2, gespwd, 
+      is_ht_vip, store_points, pid, 
+      p2_id, p3_id, p4_id, p5_id, 
+      usdt_num, bed_num, immt_num, 
+      th_award_lv, award_lv, dt_award_day, 
+      tb_num, buy_tb_day, th_num, 
+      bed_award_day, code_img, gflag
+      )
+    values (#{id,jdbcType=BIGINT}, #{uuid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{orgPwd,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{nickname,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{regdate,jdbcType=INTEGER}, #{loginip,jdbcType=CHAR}, #{salt,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{refer,jdbcType=INTEGER}, #{referMobile,jdbcType=VARCHAR}, 
+      #{lastLogin,jdbcType=INTEGER}, #{wechatOpenid,jdbcType=VARCHAR}, #{gold,jdbcType=DECIMAL}, 
+      #{ipaddress,jdbcType=VARCHAR}, #{card,jdbcType=VARCHAR}, #{incode,jdbcType=INTEGER}, 
+      #{yeji,jdbcType=DECIMAL}, #{lv,jdbcType=BIT}, #{freeze,jdbcType=DECIMAL}, #{oldnum,jdbcType=DECIMAL}, 
+      #{cash,jdbcType=INTEGER}, #{tree,jdbcType=VARCHAR}, #{paytime,jdbcType=INTEGER}, 
+      #{paypwd,jdbcType=VARCHAR}, #{tree2,jdbcType=VARCHAR}, #{tdrs,jdbcType=INTEGER}, 
+      #{ztrs,jdbcType=INTEGER}, #{djStatus,jdbcType=BIT}, #{maxLv,jdbcType=BIT}, #{avatar,jdbcType=INTEGER}, 
+      #{yeji2,jdbcType=DECIMAL}, #{refer2,jdbcType=VARCHAR}, #{gespwd,jdbcType=VARCHAR}, 
+      #{isHtVip,jdbcType=INTEGER}, #{storePoints,jdbcType=DECIMAL}, #{pid,jdbcType=INTEGER}, 
+      #{p2Id,jdbcType=INTEGER}, #{p3Id,jdbcType=INTEGER}, #{p4Id,jdbcType=INTEGER}, #{p5Id,jdbcType=INTEGER}, 
+      #{usdtNum,jdbcType=REAL}, #{bedNum,jdbcType=VARCHAR}, #{immtNum,jdbcType=VARCHAR}, 
+      #{thAwardLv,jdbcType=INTEGER}, #{awardLv,jdbcType=INTEGER}, #{dtAwardDay,jdbcType=VARCHAR}, 
+      #{tbNum,jdbcType=INTEGER}, #{buyTbDay,jdbcType=VARCHAR}, #{thNum,jdbcType=INTEGER}, 
+      #{bedAwardDay,jdbcType=VARCHAR}, #{codeImg,jdbcType=LONGVARCHAR}, #{gflag,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.itcast.bean.MiniUsersDeleteWithBLOBs">
+    insert into mini_users_delete
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="orgPwd != null">
+        org_pwd,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="nickname != null">
+        nickname,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="regdate != null">
+        regdate,
+      </if>
+      <if test="loginip != null">
+        loginip,
+      </if>
+      <if test="salt != null">
+        salt,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="refer != null">
+        refer,
+      </if>
+      <if test="referMobile != null">
+        refer_mobile,
+      </if>
+      <if test="lastLogin != null">
+        last_login,
+      </if>
+      <if test="wechatOpenid != null">
+        wechat_openid,
+      </if>
+      <if test="gold != null">
+        gold,
+      </if>
+      <if test="ipaddress != null">
+        ipaddress,
+      </if>
+      <if test="card != null">
+        card,
+      </if>
+      <if test="incode != null">
+        incode,
+      </if>
+      <if test="yeji != null">
+        yeji,
+      </if>
+      <if test="lv != null">
+        lv,
+      </if>
+      <if test="freeze != null">
+        freeze,
+      </if>
+      <if test="oldnum != null">
+        oldnum,
+      </if>
+      <if test="cash != null">
+        cash,
+      </if>
+      <if test="tree != null">
+        tree,
+      </if>
+      <if test="paytime != null">
+        paytime,
+      </if>
+      <if test="paypwd != null">
+        paypwd,
+      </if>
+      <if test="tree2 != null">
+        tree2,
+      </if>
+      <if test="tdrs != null">
+        tdrs,
+      </if>
+      <if test="ztrs != null">
+        ztrs,
+      </if>
+      <if test="djStatus != null">
+        dj_status,
+      </if>
+      <if test="maxLv != null">
+        max_lv,
+      </if>
+      <if test="avatar != null">
+        avatar,
+      </if>
+      <if test="yeji2 != null">
+        yeji2,
+      </if>
+      <if test="refer2 != null">
+        refer2,
+      </if>
+      <if test="gespwd != null">
+        gespwd,
+      </if>
+      <if test="isHtVip != null">
+        is_ht_vip,
+      </if>
+      <if test="storePoints != null">
+        store_points,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="p2Id != null">
+        p2_id,
+      </if>
+      <if test="p3Id != null">
+        p3_id,
+      </if>
+      <if test="p4Id != null">
+        p4_id,
+      </if>
+      <if test="p5Id != null">
+        p5_id,
+      </if>
+      <if test="usdtNum != null">
+        usdt_num,
+      </if>
+      <if test="bedNum != null">
+        bed_num,
+      </if>
+      <if test="immtNum != null">
+        immt_num,
+      </if>
+      <if test="thAwardLv != null">
+        th_award_lv,
+      </if>
+      <if test="awardLv != null">
+        award_lv,
+      </if>
+      <if test="dtAwardDay != null">
+        dt_award_day,
+      </if>
+      <if test="tbNum != null">
+        tb_num,
+      </if>
+      <if test="buyTbDay != null">
+        buy_tb_day,
+      </if>
+      <if test="thNum != null">
+        th_num,
+      </if>
+      <if test="bedAwardDay != null">
+        bed_award_day,
+      </if>
+      <if test="codeImg != null">
+        code_img,
+      </if>
+      <if test="gflag != null">
+        gflag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="orgPwd != null">
+        #{orgPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="regdate != null">
+        #{regdate,jdbcType=INTEGER},
+      </if>
+      <if test="loginip != null">
+        #{loginip,jdbcType=CHAR},
+      </if>
+      <if test="salt != null">
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="refer != null">
+        #{refer,jdbcType=INTEGER},
+      </if>
+      <if test="referMobile != null">
+        #{referMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLogin != null">
+        #{lastLogin,jdbcType=INTEGER},
+      </if>
+      <if test="wechatOpenid != null">
+        #{wechatOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="gold != null">
+        #{gold,jdbcType=DECIMAL},
+      </if>
+      <if test="ipaddress != null">
+        #{ipaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="card != null">
+        #{card,jdbcType=VARCHAR},
+      </if>
+      <if test="incode != null">
+        #{incode,jdbcType=INTEGER},
+      </if>
+      <if test="yeji != null">
+        #{yeji,jdbcType=DECIMAL},
+      </if>
+      <if test="lv != null">
+        #{lv,jdbcType=BIT},
+      </if>
+      <if test="freeze != null">
+        #{freeze,jdbcType=DECIMAL},
+      </if>
+      <if test="oldnum != null">
+        #{oldnum,jdbcType=DECIMAL},
+      </if>
+      <if test="cash != null">
+        #{cash,jdbcType=INTEGER},
+      </if>
+      <if test="tree != null">
+        #{tree,jdbcType=VARCHAR},
+      </if>
+      <if test="paytime != null">
+        #{paytime,jdbcType=INTEGER},
+      </if>
+      <if test="paypwd != null">
+        #{paypwd,jdbcType=VARCHAR},
+      </if>
+      <if test="tree2 != null">
+        #{tree2,jdbcType=VARCHAR},
+      </if>
+      <if test="tdrs != null">
+        #{tdrs,jdbcType=INTEGER},
+      </if>
+      <if test="ztrs != null">
+        #{ztrs,jdbcType=INTEGER},
+      </if>
+      <if test="djStatus != null">
+        #{djStatus,jdbcType=BIT},
+      </if>
+      <if test="maxLv != null">
+        #{maxLv,jdbcType=BIT},
+      </if>
+      <if test="avatar != null">
+        #{avatar,jdbcType=INTEGER},
+      </if>
+      <if test="yeji2 != null">
+        #{yeji2,jdbcType=DECIMAL},
+      </if>
+      <if test="refer2 != null">
+        #{refer2,jdbcType=VARCHAR},
+      </if>
+      <if test="gespwd != null">
+        #{gespwd,jdbcType=VARCHAR},
+      </if>
+      <if test="isHtVip != null">
+        #{isHtVip,jdbcType=INTEGER},
+      </if>
+      <if test="storePoints != null">
+        #{storePoints,jdbcType=DECIMAL},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="p2Id != null">
+        #{p2Id,jdbcType=INTEGER},
+      </if>
+      <if test="p3Id != null">
+        #{p3Id,jdbcType=INTEGER},
+      </if>
+      <if test="p4Id != null">
+        #{p4Id,jdbcType=INTEGER},
+      </if>
+      <if test="p5Id != null">
+        #{p5Id,jdbcType=INTEGER},
+      </if>
+      <if test="usdtNum != null">
+        #{usdtNum,jdbcType=REAL},
+      </if>
+      <if test="bedNum != null">
+        #{bedNum,jdbcType=VARCHAR},
+      </if>
+      <if test="immtNum != null">
+        #{immtNum,jdbcType=VARCHAR},
+      </if>
+      <if test="thAwardLv != null">
+        #{thAwardLv,jdbcType=INTEGER},
+      </if>
+      <if test="awardLv != null">
+        #{awardLv,jdbcType=INTEGER},
+      </if>
+      <if test="dtAwardDay != null">
+        #{dtAwardDay,jdbcType=VARCHAR},
+      </if>
+      <if test="tbNum != null">
+        #{tbNum,jdbcType=INTEGER},
+      </if>
+      <if test="buyTbDay != null">
+        #{buyTbDay,jdbcType=VARCHAR},
+      </if>
+      <if test="thNum != null">
+        #{thNum,jdbcType=INTEGER},
+      </if>
+      <if test="bedAwardDay != null">
+        #{bedAwardDay,jdbcType=VARCHAR},
+      </if>
+      <if test="codeImg != null">
+        #{codeImg,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="gflag != null">
+        #{gflag,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.itcast.bean.MiniUsersDeleteExample" resultType="java.lang.Long">
+    select count(*) from mini_users_delete
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update mini_users_delete
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.uuid != null">
+        uuid = #{record.uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.username != null">
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgPwd != null">
+        org_pwd = #{record.orgPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null">
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nickname != null">
+        nickname = #{record.nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null">
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regdate != null">
+        regdate = #{record.regdate,jdbcType=INTEGER},
+      </if>
+      <if test="record.loginip != null">
+        loginip = #{record.loginip,jdbcType=CHAR},
+      </if>
+      <if test="record.salt != null">
+        salt = #{record.salt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.refer != null">
+        refer = #{record.refer,jdbcType=INTEGER},
+      </if>
+      <if test="record.referMobile != null">
+        refer_mobile = #{record.referMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastLogin != null">
+        last_login = #{record.lastLogin,jdbcType=INTEGER},
+      </if>
+      <if test="record.wechatOpenid != null">
+        wechat_openid = #{record.wechatOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gold != null">
+        gold = #{record.gold,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ipaddress != null">
+        ipaddress = #{record.ipaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.card != null">
+        card = #{record.card,jdbcType=VARCHAR},
+      </if>
+      <if test="record.incode != null">
+        incode = #{record.incode,jdbcType=INTEGER},
+      </if>
+      <if test="record.yeji != null">
+        yeji = #{record.yeji,jdbcType=DECIMAL},
+      </if>
+      <if test="record.lv != null">
+        lv = #{record.lv,jdbcType=BIT},
+      </if>
+      <if test="record.freeze != null">
+        freeze = #{record.freeze,jdbcType=DECIMAL},
+      </if>
+      <if test="record.oldnum != null">
+        oldnum = #{record.oldnum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.cash != null">
+        cash = #{record.cash,jdbcType=INTEGER},
+      </if>
+      <if test="record.tree != null">
+        tree = #{record.tree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paytime != null">
+        paytime = #{record.paytime,jdbcType=INTEGER},
+      </if>
+      <if test="record.paypwd != null">
+        paypwd = #{record.paypwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tree2 != null">
+        tree2 = #{record.tree2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdrs != null">
+        tdrs = #{record.tdrs,jdbcType=INTEGER},
+      </if>
+      <if test="record.ztrs != null">
+        ztrs = #{record.ztrs,jdbcType=INTEGER},
+      </if>
+      <if test="record.djStatus != null">
+        dj_status = #{record.djStatus,jdbcType=BIT},
+      </if>
+      <if test="record.maxLv != null">
+        max_lv = #{record.maxLv,jdbcType=BIT},
+      </if>
+      <if test="record.avatar != null">
+        avatar = #{record.avatar,jdbcType=INTEGER},
+      </if>
+      <if test="record.yeji2 != null">
+        yeji2 = #{record.yeji2,jdbcType=DECIMAL},
+      </if>
+      <if test="record.refer2 != null">
+        refer2 = #{record.refer2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gespwd != null">
+        gespwd = #{record.gespwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isHtVip != null">
+        is_ht_vip = #{record.isHtVip,jdbcType=INTEGER},
+      </if>
+      <if test="record.storePoints != null">
+        store_points = #{record.storePoints,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pid != null">
+        pid = #{record.pid,jdbcType=INTEGER},
+      </if>
+      <if test="record.p2Id != null">
+        p2_id = #{record.p2Id,jdbcType=INTEGER},
+      </if>
+      <if test="record.p3Id != null">
+        p3_id = #{record.p3Id,jdbcType=INTEGER},
+      </if>
+      <if test="record.p4Id != null">
+        p4_id = #{record.p4Id,jdbcType=INTEGER},
+      </if>
+      <if test="record.p5Id != null">
+        p5_id = #{record.p5Id,jdbcType=INTEGER},
+      </if>
+      <if test="record.usdtNum != null">
+        usdt_num = #{record.usdtNum,jdbcType=REAL},
+      </if>
+      <if test="record.bedNum != null">
+        bed_num = #{record.bedNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.immtNum != null">
+        immt_num = #{record.immtNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thAwardLv != null">
+        th_award_lv = #{record.thAwardLv,jdbcType=INTEGER},
+      </if>
+      <if test="record.awardLv != null">
+        award_lv = #{record.awardLv,jdbcType=INTEGER},
+      </if>
+      <if test="record.dtAwardDay != null">
+        dt_award_day = #{record.dtAwardDay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tbNum != null">
+        tb_num = #{record.tbNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.buyTbDay != null">
+        buy_tb_day = #{record.buyTbDay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thNum != null">
+        th_num = #{record.thNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.bedAwardDay != null">
+        bed_award_day = #{record.bedAwardDay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codeImg != null">
+        code_img = #{record.codeImg,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.gflag != null">
+        gflag = #{record.gflag,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update mini_users_delete
+    set id = #{record.id,jdbcType=BIGINT},
+      uuid = #{record.uuid,jdbcType=VARCHAR},
+      username = #{record.username,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      org_pwd = #{record.orgPwd,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      nickname = #{record.nickname,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      regdate = #{record.regdate,jdbcType=INTEGER},
+      loginip = #{record.loginip,jdbcType=CHAR},
+      salt = #{record.salt,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=TINYINT},
+      refer = #{record.refer,jdbcType=INTEGER},
+      refer_mobile = #{record.referMobile,jdbcType=VARCHAR},
+      last_login = #{record.lastLogin,jdbcType=INTEGER},
+      wechat_openid = #{record.wechatOpenid,jdbcType=VARCHAR},
+      gold = #{record.gold,jdbcType=DECIMAL},
+      ipaddress = #{record.ipaddress,jdbcType=VARCHAR},
+      card = #{record.card,jdbcType=VARCHAR},
+      incode = #{record.incode,jdbcType=INTEGER},
+      yeji = #{record.yeji,jdbcType=DECIMAL},
+      lv = #{record.lv,jdbcType=BIT},
+      freeze = #{record.freeze,jdbcType=DECIMAL},
+      oldnum = #{record.oldnum,jdbcType=DECIMAL},
+      cash = #{record.cash,jdbcType=INTEGER},
+      tree = #{record.tree,jdbcType=VARCHAR},
+      paytime = #{record.paytime,jdbcType=INTEGER},
+      paypwd = #{record.paypwd,jdbcType=VARCHAR},
+      tree2 = #{record.tree2,jdbcType=VARCHAR},
+      tdrs = #{record.tdrs,jdbcType=INTEGER},
+      ztrs = #{record.ztrs,jdbcType=INTEGER},
+      dj_status = #{record.djStatus,jdbcType=BIT},
+      max_lv = #{record.maxLv,jdbcType=BIT},
+      avatar = #{record.avatar,jdbcType=INTEGER},
+      yeji2 = #{record.yeji2,jdbcType=DECIMAL},
+      refer2 = #{record.refer2,jdbcType=VARCHAR},
+      gespwd = #{record.gespwd,jdbcType=VARCHAR},
+      is_ht_vip = #{record.isHtVip,jdbcType=INTEGER},
+      store_points = #{record.storePoints,jdbcType=DECIMAL},
+      pid = #{record.pid,jdbcType=INTEGER},
+      p2_id = #{record.p2Id,jdbcType=INTEGER},
+      p3_id = #{record.p3Id,jdbcType=INTEGER},
+      p4_id = #{record.p4Id,jdbcType=INTEGER},
+      p5_id = #{record.p5Id,jdbcType=INTEGER},
+      usdt_num = #{record.usdtNum,jdbcType=REAL},
+      bed_num = #{record.bedNum,jdbcType=VARCHAR},
+      immt_num = #{record.immtNum,jdbcType=VARCHAR},
+      th_award_lv = #{record.thAwardLv,jdbcType=INTEGER},
+      award_lv = #{record.awardLv,jdbcType=INTEGER},
+      dt_award_day = #{record.dtAwardDay,jdbcType=VARCHAR},
+      tb_num = #{record.tbNum,jdbcType=INTEGER},
+      buy_tb_day = #{record.buyTbDay,jdbcType=VARCHAR},
+      th_num = #{record.thNum,jdbcType=INTEGER},
+      bed_award_day = #{record.bedAwardDay,jdbcType=VARCHAR},
+      code_img = #{record.codeImg,jdbcType=LONGVARCHAR},
+      gflag = #{record.gflag,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update mini_users_delete
+    set id = #{record.id,jdbcType=BIGINT},
+      uuid = #{record.uuid,jdbcType=VARCHAR},
+      username = #{record.username,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      org_pwd = #{record.orgPwd,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      nickname = #{record.nickname,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      regdate = #{record.regdate,jdbcType=INTEGER},
+      loginip = #{record.loginip,jdbcType=CHAR},
+      salt = #{record.salt,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=TINYINT},
+      refer = #{record.refer,jdbcType=INTEGER},
+      refer_mobile = #{record.referMobile,jdbcType=VARCHAR},
+      last_login = #{record.lastLogin,jdbcType=INTEGER},
+      wechat_openid = #{record.wechatOpenid,jdbcType=VARCHAR},
+      gold = #{record.gold,jdbcType=DECIMAL},
+      ipaddress = #{record.ipaddress,jdbcType=VARCHAR},
+      card = #{record.card,jdbcType=VARCHAR},
+      incode = #{record.incode,jdbcType=INTEGER},
+      yeji = #{record.yeji,jdbcType=DECIMAL},
+      lv = #{record.lv,jdbcType=BIT},
+      freeze = #{record.freeze,jdbcType=DECIMAL},
+      oldnum = #{record.oldnum,jdbcType=DECIMAL},
+      cash = #{record.cash,jdbcType=INTEGER},
+      tree = #{record.tree,jdbcType=VARCHAR},
+      paytime = #{record.paytime,jdbcType=INTEGER},
+      paypwd = #{record.paypwd,jdbcType=VARCHAR},
+      tree2 = #{record.tree2,jdbcType=VARCHAR},
+      tdrs = #{record.tdrs,jdbcType=INTEGER},
+      ztrs = #{record.ztrs,jdbcType=INTEGER},
+      dj_status = #{record.djStatus,jdbcType=BIT},
+      max_lv = #{record.maxLv,jdbcType=BIT},
+      avatar = #{record.avatar,jdbcType=INTEGER},
+      yeji2 = #{record.yeji2,jdbcType=DECIMAL},
+      refer2 = #{record.refer2,jdbcType=VARCHAR},
+      gespwd = #{record.gespwd,jdbcType=VARCHAR},
+      is_ht_vip = #{record.isHtVip,jdbcType=INTEGER},
+      store_points = #{record.storePoints,jdbcType=DECIMAL},
+      pid = #{record.pid,jdbcType=INTEGER},
+      p2_id = #{record.p2Id,jdbcType=INTEGER},
+      p3_id = #{record.p3Id,jdbcType=INTEGER},
+      p4_id = #{record.p4Id,jdbcType=INTEGER},
+      p5_id = #{record.p5Id,jdbcType=INTEGER},
+      usdt_num = #{record.usdtNum,jdbcType=REAL},
+      bed_num = #{record.bedNum,jdbcType=VARCHAR},
+      immt_num = #{record.immtNum,jdbcType=VARCHAR},
+      th_award_lv = #{record.thAwardLv,jdbcType=INTEGER},
+      award_lv = #{record.awardLv,jdbcType=INTEGER},
+      dt_award_day = #{record.dtAwardDay,jdbcType=VARCHAR},
+      tb_num = #{record.tbNum,jdbcType=INTEGER},
+      buy_tb_day = #{record.buyTbDay,jdbcType=VARCHAR},
+      th_num = #{record.thNum,jdbcType=INTEGER},
+      bed_award_day = #{record.bedAwardDay,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itcast.bean.MiniUsersDeleteWithBLOBs">
+    update mini_users_delete
+    <set>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="orgPwd != null">
+        org_pwd = #{orgPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="regdate != null">
+        regdate = #{regdate,jdbcType=INTEGER},
+      </if>
+      <if test="loginip != null">
+        loginip = #{loginip,jdbcType=CHAR},
+      </if>
+      <if test="salt != null">
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="refer != null">
+        refer = #{refer,jdbcType=INTEGER},
+      </if>
+      <if test="referMobile != null">
+        refer_mobile = #{referMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLogin != null">
+        last_login = #{lastLogin,jdbcType=INTEGER},
+      </if>
+      <if test="wechatOpenid != null">
+        wechat_openid = #{wechatOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="gold != null">
+        gold = #{gold,jdbcType=DECIMAL},
+      </if>
+      <if test="ipaddress != null">
+        ipaddress = #{ipaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="card != null">
+        card = #{card,jdbcType=VARCHAR},
+      </if>
+      <if test="incode != null">
+        incode = #{incode,jdbcType=INTEGER},
+      </if>
+      <if test="yeji != null">
+        yeji = #{yeji,jdbcType=DECIMAL},
+      </if>
+      <if test="lv != null">
+        lv = #{lv,jdbcType=BIT},
+      </if>
+      <if test="freeze != null">
+        freeze = #{freeze,jdbcType=DECIMAL},
+      </if>
+      <if test="oldnum != null">
+        oldnum = #{oldnum,jdbcType=DECIMAL},
+      </if>
+      <if test="cash != null">
+        cash = #{cash,jdbcType=INTEGER},
+      </if>
+      <if test="tree != null">
+        tree = #{tree,jdbcType=VARCHAR},
+      </if>
+      <if test="paytime != null">
+        paytime = #{paytime,jdbcType=INTEGER},
+      </if>
+      <if test="paypwd != null">
+        paypwd = #{paypwd,jdbcType=VARCHAR},
+      </if>
+      <if test="tree2 != null">
+        tree2 = #{tree2,jdbcType=VARCHAR},
+      </if>
+      <if test="tdrs != null">
+        tdrs = #{tdrs,jdbcType=INTEGER},
+      </if>
+      <if test="ztrs != null">
+        ztrs = #{ztrs,jdbcType=INTEGER},
+      </if>
+      <if test="djStatus != null">
+        dj_status = #{djStatus,jdbcType=BIT},
+      </if>
+      <if test="maxLv != null">
+        max_lv = #{maxLv,jdbcType=BIT},
+      </if>
+      <if test="avatar != null">
+        avatar = #{avatar,jdbcType=INTEGER},
+      </if>
+      <if test="yeji2 != null">
+        yeji2 = #{yeji2,jdbcType=DECIMAL},
+      </if>
+      <if test="refer2 != null">
+        refer2 = #{refer2,jdbcType=VARCHAR},
+      </if>
+      <if test="gespwd != null">
+        gespwd = #{gespwd,jdbcType=VARCHAR},
+      </if>
+      <if test="isHtVip != null">
+        is_ht_vip = #{isHtVip,jdbcType=INTEGER},
+      </if>
+      <if test="storePoints != null">
+        store_points = #{storePoints,jdbcType=DECIMAL},
+      </if>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="p2Id != null">
+        p2_id = #{p2Id,jdbcType=INTEGER},
+      </if>
+      <if test="p3Id != null">
+        p3_id = #{p3Id,jdbcType=INTEGER},
+      </if>
+      <if test="p4Id != null">
+        p4_id = #{p4Id,jdbcType=INTEGER},
+      </if>
+      <if test="p5Id != null">
+        p5_id = #{p5Id,jdbcType=INTEGER},
+      </if>
+      <if test="usdtNum != null">
+        usdt_num = #{usdtNum,jdbcType=REAL},
+      </if>
+      <if test="bedNum != null">
+        bed_num = #{bedNum,jdbcType=VARCHAR},
+      </if>
+      <if test="immtNum != null">
+        immt_num = #{immtNum,jdbcType=VARCHAR},
+      </if>
+      <if test="thAwardLv != null">
+        th_award_lv = #{thAwardLv,jdbcType=INTEGER},
+      </if>
+      <if test="awardLv != null">
+        award_lv = #{awardLv,jdbcType=INTEGER},
+      </if>
+      <if test="dtAwardDay != null">
+        dt_award_day = #{dtAwardDay,jdbcType=VARCHAR},
+      </if>
+      <if test="tbNum != null">
+        tb_num = #{tbNum,jdbcType=INTEGER},
+      </if>
+      <if test="buyTbDay != null">
+        buy_tb_day = #{buyTbDay,jdbcType=VARCHAR},
+      </if>
+      <if test="thNum != null">
+        th_num = #{thNum,jdbcType=INTEGER},
+      </if>
+      <if test="bedAwardDay != null">
+        bed_award_day = #{bedAwardDay,jdbcType=VARCHAR},
+      </if>
+      <if test="codeImg != null">
+        code_img = #{codeImg,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="gflag != null">
+        gflag = #{gflag,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.itcast.bean.MiniUsersDeleteWithBLOBs">
+    update mini_users_delete
+    set uuid = #{uuid,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      org_pwd = #{orgPwd,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      regdate = #{regdate,jdbcType=INTEGER},
+      loginip = #{loginip,jdbcType=CHAR},
+      salt = #{salt,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      refer = #{refer,jdbcType=INTEGER},
+      refer_mobile = #{referMobile,jdbcType=VARCHAR},
+      last_login = #{lastLogin,jdbcType=INTEGER},
+      wechat_openid = #{wechatOpenid,jdbcType=VARCHAR},
+      gold = #{gold,jdbcType=DECIMAL},
+      ipaddress = #{ipaddress,jdbcType=VARCHAR},
+      card = #{card,jdbcType=VARCHAR},
+      incode = #{incode,jdbcType=INTEGER},
+      yeji = #{yeji,jdbcType=DECIMAL},
+      lv = #{lv,jdbcType=BIT},
+      freeze = #{freeze,jdbcType=DECIMAL},
+      oldnum = #{oldnum,jdbcType=DECIMAL},
+      cash = #{cash,jdbcType=INTEGER},
+      tree = #{tree,jdbcType=VARCHAR},
+      paytime = #{paytime,jdbcType=INTEGER},
+      paypwd = #{paypwd,jdbcType=VARCHAR},
+      tree2 = #{tree2,jdbcType=VARCHAR},
+      tdrs = #{tdrs,jdbcType=INTEGER},
+      ztrs = #{ztrs,jdbcType=INTEGER},
+      dj_status = #{djStatus,jdbcType=BIT},
+      max_lv = #{maxLv,jdbcType=BIT},
+      avatar = #{avatar,jdbcType=INTEGER},
+      yeji2 = #{yeji2,jdbcType=DECIMAL},
+      refer2 = #{refer2,jdbcType=VARCHAR},
+      gespwd = #{gespwd,jdbcType=VARCHAR},
+      is_ht_vip = #{isHtVip,jdbcType=INTEGER},
+      store_points = #{storePoints,jdbcType=DECIMAL},
+      pid = #{pid,jdbcType=INTEGER},
+      p2_id = #{p2Id,jdbcType=INTEGER},
+      p3_id = #{p3Id,jdbcType=INTEGER},
+      p4_id = #{p4Id,jdbcType=INTEGER},
+      p5_id = #{p5Id,jdbcType=INTEGER},
+      usdt_num = #{usdtNum,jdbcType=REAL},
+      bed_num = #{bedNum,jdbcType=VARCHAR},
+      immt_num = #{immtNum,jdbcType=VARCHAR},
+      th_award_lv = #{thAwardLv,jdbcType=INTEGER},
+      award_lv = #{awardLv,jdbcType=INTEGER},
+      dt_award_day = #{dtAwardDay,jdbcType=VARCHAR},
+      tb_num = #{tbNum,jdbcType=INTEGER},
+      buy_tb_day = #{buyTbDay,jdbcType=VARCHAR},
+      th_num = #{thNum,jdbcType=INTEGER},
+      bed_award_day = #{bedAwardDay,jdbcType=VARCHAR},
+      code_img = #{codeImg,jdbcType=LONGVARCHAR},
+      gflag = #{gflag,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itcast.bean.MiniUsersDelete">
+    update mini_users_delete
+    set uuid = #{uuid,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      org_pwd = #{orgPwd,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      regdate = #{regdate,jdbcType=INTEGER},
+      loginip = #{loginip,jdbcType=CHAR},
+      salt = #{salt,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      refer = #{refer,jdbcType=INTEGER},
+      refer_mobile = #{referMobile,jdbcType=VARCHAR},
+      last_login = #{lastLogin,jdbcType=INTEGER},
+      wechat_openid = #{wechatOpenid,jdbcType=VARCHAR},
+      gold = #{gold,jdbcType=DECIMAL},
+      ipaddress = #{ipaddress,jdbcType=VARCHAR},
+      card = #{card,jdbcType=VARCHAR},
+      incode = #{incode,jdbcType=INTEGER},
+      yeji = #{yeji,jdbcType=DECIMAL},
+      lv = #{lv,jdbcType=BIT},
+      freeze = #{freeze,jdbcType=DECIMAL},
+      oldnum = #{oldnum,jdbcType=DECIMAL},
+      cash = #{cash,jdbcType=INTEGER},
+      tree = #{tree,jdbcType=VARCHAR},
+      paytime = #{paytime,jdbcType=INTEGER},
+      paypwd = #{paypwd,jdbcType=VARCHAR},
+      tree2 = #{tree2,jdbcType=VARCHAR},
+      tdrs = #{tdrs,jdbcType=INTEGER},
+      ztrs = #{ztrs,jdbcType=INTEGER},
+      dj_status = #{djStatus,jdbcType=BIT},
+      max_lv = #{maxLv,jdbcType=BIT},
+      avatar = #{avatar,jdbcType=INTEGER},
+      yeji2 = #{yeji2,jdbcType=DECIMAL},
+      refer2 = #{refer2,jdbcType=VARCHAR},
+      gespwd = #{gespwd,jdbcType=VARCHAR},
+      is_ht_vip = #{isHtVip,jdbcType=INTEGER},
+      store_points = #{storePoints,jdbcType=DECIMAL},
+      pid = #{pid,jdbcType=INTEGER},
+      p2_id = #{p2Id,jdbcType=INTEGER},
+      p3_id = #{p3Id,jdbcType=INTEGER},
+      p4_id = #{p4Id,jdbcType=INTEGER},
+      p5_id = #{p5Id,jdbcType=INTEGER},
+      usdt_num = #{usdtNum,jdbcType=REAL},
+      bed_num = #{bedNum,jdbcType=VARCHAR},
+      immt_num = #{immtNum,jdbcType=VARCHAR},
+      th_award_lv = #{thAwardLv,jdbcType=INTEGER},
+      award_lv = #{awardLv,jdbcType=INTEGER},
+      dt_award_day = #{dtAwardDay,jdbcType=VARCHAR},
+      tb_num = #{tbNum,jdbcType=INTEGER},
+      buy_tb_day = #{buyTbDay,jdbcType=VARCHAR},
+      th_num = #{thNum,jdbcType=INTEGER},
+      bed_award_day = #{bedAwardDay,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

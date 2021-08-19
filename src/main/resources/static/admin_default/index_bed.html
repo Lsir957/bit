@@ -1,0 +1,457 @@
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+    <meta name="description" content="bootstrap default admin template">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>后台管理系统</title>
+
+
+    <!-- Start global css -->
+    <link rel="stylesheet" href="../assets/global/plugins/Waves/dist/waves.min.css"/>
+    <link rel="stylesheet" href="../assets/global/plugins/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../assets/icons_fonts/font-awesome/css/font-awesome.min.css"/>
+    <!-- End global css -->
+
+    <!-- Start page plugin css -->
+
+    <!-- End page plugin css -->
+
+    <!-- Start template global css -->
+    <link href="../assets/global/css/components.min.css" type="text/css" rel="stylesheet"/>
+    <!-- End template global css -->
+
+    <!-- Start layout css -->
+    <link rel="stylesheet" href="../assets/layouts/layouts_left_menu/left_menu_layout.min.css"/>
+    <!-- End layout css -->
+
+    <!-- Start favicon ico -->
+    <link rel="icon" href="../assets/favicon/prince.ico" type="image/x-icon"/>
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon/prince-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/prince-180x180.png">
+    <!-- End favicon ico -->
+</head>
+<body class="nav-medium">
+<div class="container body">
+    <div class="main_container">
+            <!-- Start Loader -->
+<div class="page-loader">
+    <div class="preloader loading">
+        <span class="slice"></span>
+        <span class="slice"></span>
+        <span class="slice"></span>
+        <span class="slice"></span>
+        <span class="slice"></span>
+        <span class="slice"></span>
+    </div>
+</div>
+<!-- End Loader -->
+
+<!-- Start Scroll Top -->
+<a href="javascript:" id="scroll" style="display: none;"><span></span></a>
+<!-- End Scroll Top -->
+
+<!-- start Left Menu-->
+<div class="col-md-3 left_color">
+    <div class="left_color scroll-view">
+        <div class="navbar nav_title">
+            <a href="../../../webapp/index.html" class="medium-logo">
+                <img src="../assets/global/images/prince_logo.png" alt="medium-logo">
+            </a>
+            <a href="../../../webapp/index.html" class="small-logo">
+                <img src="../assets/global/images/prince_logo2.png" alt="small-logo">
+            </a>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <!-- sidebar menu -->
+        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+                <h3>General</h3>
+                <ul class="nav side-menu">
+                    <li><a class="waves-effect waves-light" href="../../../webapp/index.html"><i class="fa fa-home"></i>首页</a></li>
+                    <li><a class="waves-effect waves-light"><i class="fa fa-desktop"></i>站点管理<span
+                            class="fa fa-chevron-right"></span></a>
+                        <ul class="nav child_menu">
+                            <li> <a class="waves-effect waves-light" href="../../templates/pages/dt_award.html">动态奖励比例</a></li>
+                            <li> <a class="waves-effect waves-light" href="../../templates/pages/vip.html">奖金设置</a></li>
+                            <li> <a class="waves-effect waves-light" href="../../templates/pages/system.html">系统参数</a></li>
+                            <li> <a class="waves-effect waves-light" href="../../templates/pages/coin_type.html">币种管理</a></li>
+                            <li> <a class="waves-effect waves-light" href="../../templates/pages/pwd.html">修改密码</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="waves-effect waves-light"><i class="fa fa-user-circle-o"></i>用户管理<span
+                            class="fa fa-chevron-right"></span></a>
+                        <ul class="nav child_menu">
+                            <li> <a class="waves-effect waves-light" href="../../templates/pages/userslist.html">用户列表</a></li>
+                            <li> <a class="waves-effect waves-light" href="../../templates/pages/shu.html">团队树状图</a></li>
+                            <li> <a class="waves-effect waves-light" href="../../templates/pages/shu_new.html">团队树状图NEW</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="waves-effect waves-light"><i class="fa fa-user-circle-o"></i>财务管理<span
+                                class="fa fa-chevron-right"></span></a>
+                        <ul class="nav child_menu">
+                            <li> <a class="waves-effect waves-light" href="../../templates/pages/member_data.html">会员数据</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="waves-effect waves-light"><i class="fa fa-cube"></i>理财管理<span
+                                class="fa fa-chevron-right"></span></a>
+                        <ul class="nav child_menu">
+                            <li> <a class="waves-effect waves-light" href="immt.html">理财产品-IMMT</a></li>
+                            <li> <a class="waves-effect waves-light" href="index_bed.html">理财产品-BED</a></li>
+                            <li> <a class="waves-effect waves-light" href="index_bed2.html">理财产品-BED2</a></li>
+                            <li> <a class="waves-effect waves-light" href="game_record.html">购买记录</a></li>
+                            <li> <a class="waves-effect waves-light" href="../../templates/pages/buy_list.html">购买记录2</a></li>
+                            <li> <a class="waves-effect waves-light" href="../../resources/templates/pages/bouns_list.jsp">分红记录</a></li>
+                            <li> <a class="waves-effect waves-light" href="../../templates/pages/zhiya_list.html">BED质押记录</a></li>
+                            <li> <a class="waves-effect waves-light" href="../../resources/templates/pages/bill_tg_list.jsp">矿池转账记录</a></li>
+                        </ul>
+                    </li>
+                    <li><a  class="waves-effect waves-light"><i class="fa fa-cube"></i>矿机管理<span class="fa fa-chevron-right"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a class="waves-effect waves-light" href="../../templates/pages/cate.html">矿机种类</a></li>
+                            <li><a class="waves-effect waves-light" href="../../templates/pages/miner_list.html">矿机列表</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="waves-effect waves-light"  href="../../templates/pages/kuangji.html"><i class="fa fa-money"></i>收益记录</a></li>
+                    <li><a class="waves-effect waves-light"><i class="fa fa-money"></i>平台数据<span
+                            class="fa fa-chevron-right"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a class="waves-effect waves-light" href="../../templates/pages/xq_bonus.html">平台数据</a></li>
+                            <li><a class="waves-effect waves-light" href="../../templates/pages/jihua.html">平台信息</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="waves-effect waves-light" href="../../templates/pages/exchange.html"><i class="fa fa-btc"></i>兑换记录</a></li>
+                    </li>
+                    <li><a class="waves-effect waves-light"><i class="fa fa-window-maximize"></i>公告快讯<span
+                            class="fa fa-chevron-right"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a class="waves-effect waves-light" href="../../templates/pages/notice.html">发布公告</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="waves-effect waves-light"><i class="fa fa-balance-scale"></i>充提管理<span
+                            class="fa fa-chevron-right"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a class="waves-effect waves-light" href="../../templates/pages/examine_eth.html">提现ETH审核</a></li>
+                            <li><a class="waves-effect waves-light" href="../../templates/pages/examine_immt.html">提现IMMT审核</a></li>
+                            <li><a class="waves-effect waves-light" href="../../templates/pages/examine_bed.html">提现BED审核</a></li>
+                            <li><a class="waves-effect waves-light" href="../../templates/pages/transfer2.html">提现记录</a></li>
+                            <li><a class="waves-effect waves-light" href="../../templates/pages/notran.html">提现驳回</a></li>
+                            <li><a class="waves-effect waves-light" href="../../templates/pages/recharge2.html">充值记录</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="waves-effect waves-light" href="../../templates/pages/adm_thelog.html"><i class="fa fa-edit"></i>操作日志</a></li>
+                    <li><a class="waves-effect waves-light" href="../../templates/pages/lun.html"><i class="fa fa-picture-o"></i>轮播图</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /sidebar menu -->
+
+        <!-- /menu footer buttons -->
+        <div class="sidebar-footer hidden-small">
+            <a data-toggle="tooltip" data-placement="top" title="Settings">
+                <span class="fa fa-cog" aria-hidden="true"></span>
+            </a>
+            <a class="toggle-fullscreen" data-toggle="tooltip" data-placement="top" title="FullScreen">
+                <span class="fa fa-arrows-alt" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Lock">
+                <span class="fa fa-lock" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.jsp">
+                <span class="fa fa-power-off" aria-hidden="true"></span>
+            </a>
+        </div>
+        <!-- /menu footer buttons -->
+    </div>
+</div>
+<!-- End Left Menu -->
+
+<!-- start top navigation -->
+<div class="top_nav">
+    <div class="nav_menu">
+        <nav>
+            <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                <div class="responsive-logo">
+                    <a href="../../../webapp/index.html">
+                        <img src="../assets/global/images/prince_logo.png" alt="main-logo">
+                    </a>
+                </div>
+            </div>
+
+            <div class="topbar-right">
+                <div class="nav navbar-nav navbar-right">
+
+                    <div class="header-search right-icon">
+                        <form role="search" class="search-box">
+                            <input placeholder="Search..." class="form-control" type="text">
+                            <a href="javascript:">
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </form>
+                    </div>
+
+                    <div class="dropdown header-notification right-icon">
+                        <a href="javascript:" class="dropdown-toggle waves-effect waves-light notification-icon"
+                           data-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-bell-o" aria-hidden="true"></i>
+                            <span class="label label-danger">4</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="text-center">
+                                <p class="notification-title">Notification<span
+                                            class="label label-primary">4</span></p>
+                            </li>
+                            <li class="list-group default-scroll">
+                                <a href="javascript:;" class="list-group-item">
+                                    <div class="media">
+                                        <div class="pull-left">
+                                            <img src="../assets/global/images/user1.jpg" alt="user">
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="media-heading"><span>Domance Den</span> posted a photo on
+                                                your wall.</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="javascript:;" class="list-group-item">
+                                    <div class="media">
+                                        <div class="pull-left">
+                                            <img src="../assets/global/images/user2.jpg" alt="user">
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="media-heading"><span>Wikko Menta</span> commented on your
+                                                last video.</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="javascript:;" class="list-group-item">
+                                    <div class="media">
+                                        <div class="pull-left">
+                                            <img src="../assets/global/images/user3.jpg" alt="user">
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="media-heading"><span>Jonny Sem</span> posted 4 comments
+                                                on your photo.</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="javascript:;" class="list-group-item">
+                                    <div class="media">
+                                        <div class="pull-left">
+                                            <img src="../assets/global/images/user4.jpg" alt="user">
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="media-heading"><span>Doli Senga</span> posted a photo on
+                                                your wall.</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="javascript:;" class="list-group-item">
+                                    <div class="media">
+                                        <div class="pull-left">
+                                            <img src="../assets/global/images/user5.jpg" alt="user">
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="media-heading"><span>Bhura Kenta</span> commented on your
+                                                last video.</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="javascript:;" class="list-group-item">
+                                    <div class="media">
+                                        <div class="pull-left">
+                                            <img src="../assets/global/images/user6.jpg" alt="user">
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="media-heading"><span>Jolly Baby</span> posted 2 comments
+                                                on your photo.</h5>
+                                        </div>
+                                    </div>
+                                </a>
+
+                            </li>
+                            <li class="all-notification">
+                                <a href="javascript:;" class="list-group-item text-right">
+                                    <small>See all notifications</small>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="header-fullscreen right-icon">
+                        <a href="javascript:" class="waves-effect waves-light toggle-fullscreen">
+                            <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+                        </a>
+                    </div>
+
+                    <!--<div class="header-chat right-icon">
+                        <a href="javascript:" class="waves-effect waves-light">
+                            <i class="fa fa-comments-o" aria-hidden="true"></i>
+                        </a>
+                    </div>-->
+
+                    <div class="dropdown user-profile right-icon">
+                        <a href="javascript:" class="dropdown-toggle waves-effect waves-light"
+                           data-toggle="dropdown"
+                           aria-expanded="false">
+                            <img src="../assets/global/images/user10.jpg" alt="user">
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="javascript:" class="waves-effect waves-light">
+                                    <i class="fa fa-user" aria-hidden="true"></i>Profile</a>
+                            </li>
+                            <li><a href="javascript:" class="waves-effect waves-light">
+                                    <i class="fa fa-cog" aria-hidden="true"></i>Settings</a>
+                            </li>
+                            <li><a href="javascript:" class="waves-effect waves-light">
+                                    <i class="fa fa-lock" aria-hidden="true"></i>Lock screen</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="javascript:" class="waves-effect waves-light">
+                                    <i class="fa fa-power-off text-danger" aria-hidden="true"></i> Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+        </nav>
+    </div>
+</div>
+<div class="clearfix"></div>
+<!-- End top navigation -->
+    <!-- Start Contain Section -->
+    <div class="container-fluid right_color">
+        <div class="page-main-header">
+            <!-- Page Title -->
+            <h2 class="page-name-title">理财产品</h2>
+            <!--  Breadcrumb -->
+        </div>
+
+        <div class="contain-section">
+            <div class="contain-inner-section">
+
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="main-box clearfix">
+                            <form class="form-horizontal" action="/gfa/product/add_bed.jsp" enctype="multipart/form-data" method="post" style="display:block;width:100%;height:35rem;">
+                                <h3>理财产品-BED</h3>
+                                <input type="hidden" name="id" value="2">
+                                <div class="form-group">
+                                    <label for="inputText3" class="col-lg-2 control-label">产品名称 ：<p style="color:red;text-align:right;"></p></label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" name="title" value="BED算力"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputText3" class="col-lg-2 control-label">理财天数 ：<p style="color:red;text-align:right;"></p></label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" name="day" value="366"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputText3" class="col-lg-2 control-label">日产算力 TB：</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" name="day_out" value="0.00"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputText3" class="col-lg-2 control-label">套餐介绍 ：<p style="color:red;text-align:right;"></p></label>
+                                    <div class="col-lg-10">
+                                        <!-- <input type="textarea" class="form-control" name="content" value="随时可退本。用户购买套餐，每天进行币息结算。在本用户投入币息小于投入本金情况下可随时退本（退本机制公式：投入本金-拿到的币息=退出本金）。若拿到币息大于或者等于投入本金的情况下，则无退本机制。"> -->
+                                        <textarea type="text" name="content" class="form-control" value="">1TH</textarea>
+
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputText3" class="col-lg-2 control-label">购买价格 ：<p style="color:red;text-align:right;">IMMT</p></label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" name="buy_price" value="10000.00"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputText3" class="col-lg-2 control-label">购买价格 ：<p style="color:red;text-align:right;">USTD</p></label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" name="usdt_price" value="260.000000"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputText3" class="col-lg-2 control-label">库存量 ：<p style="color:red;text-align:right;"></p></label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" name="max_kucun" value="1000"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputText3" class="col-lg-2 control-label">购买方式 ：<p style="color:red;text-align:right;"></p></label>
+                                    <div class="col-lg-10">
+                                        <label><input type="radio" class="form-control" name="pay_type" value="0">不限</label>
+                                        <label><input type="radio" class="form-control" name="pay_type" value="1">IMMT</label>
+                                        <label><input type="radio" class="form-control" name="pay_type" value="2" checked="">USDT</label>
+                                    </div>
+                                </div>
+                                <div class="form-group" data-toggle="buttons" style="padding-left:10%;">
+                                    <label for="inputText3" class="col-lg-2 control-label">购买开关： <p style="color:red;text-align:right;"></p></label>
+                                    <label class="btn btn-primary   active focus">
+                                        <input type="radio" name="status" id="option1" checked="" value="1">正常
+                                    </label>
+                                    <label class="btn btn-primary ">
+                                        <input type="radio" name="status" id="option2" value="0">停售
+                                    </label>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-lg-offset-2 col-lg-10">
+                                        <button type="submit" id="submit" class="btn btn-success"><i class="fa fa-save"></i> 保存/更新</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- End Contain Section -->    <!-- Start Footer Section -->    <footer class="footer">        © 2018 All rights reserved. Template designed by <a class="text-primary" href="http://www.bootstrapmb.com/">Prince</a>    </footer>    <!-- End Footer Section -->
+</div>
+</div>
+
+<!-- Start core js -->
+<script src="../assets/global/plugins/jquery/dist/jquery.min.js"></script>
+<script src="../assets/global/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../assets/global/plugins/Waves/dist/waves.min.js"></script>
+<script src="../assets/global/plugins/screenfull.js/dist/screenfull.min.js"></script>
+<script src="../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+<!-- Start core javascript -->
+
+<!-- Start global js -->
+<script src="../assets/global/js/left-menu.min.js"></script>
+<!-- End global js -->
+
+<!-- Start page plugin js -->
+<script src="../assets/global/plugins/editable-table/mindmup-editabletable.js"></script>
+<script src="../assets/global/plugins/editable-table/numeric-input-example.js"></script>
+<!-- End page plugin js -->
+
+<!-- Start page js -->
+<script>
+    !function (window, document, $) {
+        "use strict";
+        $('#edit-table').editableTableWidget().find('td:first').focus();
+    }(window, document, jQuery);
+</script>
+<!-- End page js -->
+
+
+</body>
+</html>

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itcast.dao.ThAwardMapper">
+  <resultMap id="BaseResultMap" type="com.itcast.bean.ThAward">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="th_lv" jdbcType="INTEGER" property="thLv" />
+    <result column="th_lvname" jdbcType="VARCHAR" property="thLvname" />
+    <result column="th_num" jdbcType="INTEGER" property="thNum" />
+    <result column="th_zt_rate" jdbcType="VARCHAR" property="thZtRate" />
+    <result column="th_team_rate" jdbcType="VARCHAR" property="thTeamRate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, th_lv, th_lvname, th_num, th_zt_rate, th_team_rate
+  </sql>
+  <select id="selectByExample" parameterType="com.itcast.bean.ThAwardExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from th_award
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from th_award
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from th_award
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.itcast.bean.ThAwardExample">
+    delete from th_award
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.itcast.bean.ThAward">
+    insert into th_award (id, th_lv, th_lvname, 
+      th_num, th_zt_rate, th_team_rate
+      )
+    values (#{id,jdbcType=INTEGER}, #{thLv,jdbcType=INTEGER}, #{thLvname,jdbcType=VARCHAR}, 
+      #{thNum,jdbcType=INTEGER}, #{thZtRate,jdbcType=VARCHAR}, #{thTeamRate,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.itcast.bean.ThAward">
+    insert into th_award
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="thLv != null">
+        th_lv,
+      </if>
+      <if test="thLvname != null">
+        th_lvname,
+      </if>
+      <if test="thNum != null">
+        th_num,
+      </if>
+      <if test="thZtRate != null">
+        th_zt_rate,
+      </if>
+      <if test="thTeamRate != null">
+        th_team_rate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="thLv != null">
+        #{thLv,jdbcType=INTEGER},
+      </if>
+      <if test="thLvname != null">
+        #{thLvname,jdbcType=VARCHAR},
+      </if>
+      <if test="thNum != null">
+        #{thNum,jdbcType=INTEGER},
+      </if>
+      <if test="thZtRate != null">
+        #{thZtRate,jdbcType=VARCHAR},
+      </if>
+      <if test="thTeamRate != null">
+        #{thTeamRate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.itcast.bean.ThAwardExample" resultType="java.lang.Long">
+    select count(*) from th_award
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update th_award
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.thLv != null">
+        th_lv = #{record.thLv,jdbcType=INTEGER},
+      </if>
+      <if test="record.thLvname != null">
+        th_lvname = #{record.thLvname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thNum != null">
+        th_num = #{record.thNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.thZtRate != null">
+        th_zt_rate = #{record.thZtRate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thTeamRate != null">
+        th_team_rate = #{record.thTeamRate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update th_award
+    set id = #{record.id,jdbcType=INTEGER},
+      th_lv = #{record.thLv,jdbcType=INTEGER},
+      th_lvname = #{record.thLvname,jdbcType=VARCHAR},
+      th_num = #{record.thNum,jdbcType=INTEGER},
+      th_zt_rate = #{record.thZtRate,jdbcType=VARCHAR},
+      th_team_rate = #{record.thTeamRate,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itcast.bean.ThAward">
+    update th_award
+    <set>
+      <if test="thLv != null">
+        th_lv = #{thLv,jdbcType=INTEGER},
+      </if>
+      <if test="thLvname != null">
+        th_lvname = #{thLvname,jdbcType=VARCHAR},
+      </if>
+      <if test="thNum != null">
+        th_num = #{thNum,jdbcType=INTEGER},
+      </if>
+      <if test="thZtRate != null">
+        th_zt_rate = #{thZtRate,jdbcType=VARCHAR},
+      </if>
+      <if test="thTeamRate != null">
+        th_team_rate = #{thTeamRate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itcast.bean.ThAward">
+    update th_award
+    set th_lv = #{thLv,jdbcType=INTEGER},
+      th_lvname = #{thLvname,jdbcType=VARCHAR},
+      th_num = #{thNum,jdbcType=INTEGER},
+      th_zt_rate = #{thZtRate,jdbcType=VARCHAR},
+      th_team_rate = #{thTeamRate,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

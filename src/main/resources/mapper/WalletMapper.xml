@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itcast.dao.WalletMapper">
+  <resultMap id="BaseResultMap" type="com.itcast.bean.Wallet">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="uid" jdbcType="BIGINT" property="uid" />
+    <result column="token_id" jdbcType="INTEGER" property="tokenId" />
+    <result column="balance" jdbcType="DECIMAL" property="balance" />
+    <result column="freeze" jdbcType="DECIMAL" property="freeze" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="financial" jdbcType="DECIMAL" property="financial" />
+    <result column="giving" jdbcType="DECIMAL" property="giving" />
+    <result column="dongtai" jdbcType="DECIMAL" property="dongtai" />
+    <result column="truely_balance" jdbcType="VARCHAR" property="truelyBalance" />
+    <result column="guiji_balance" jdbcType="VARCHAR" property="guijiBalance" />
+    <result column="last_block" jdbcType="INTEGER" property="lastBlock" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, uid, token_id, balance, freeze, address, financial, giving, dongtai, truely_balance, 
+    guiji_balance, last_block
+  </sql>
+  <select id="selectByExample" parameterType="com.itcast.bean.WalletExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from wallet
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from wallet
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from wallet
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.itcast.bean.WalletExample">
+    delete from wallet
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.itcast.bean.Wallet">
+    insert into wallet (id, uid, token_id, 
+      balance, freeze, address, 
+      financial, giving, dongtai, 
+      truely_balance, guiji_balance, last_block
+      )
+    values (#{id,jdbcType=BIGINT}, #{uid,jdbcType=BIGINT}, #{tokenId,jdbcType=INTEGER}, 
+      #{balance,jdbcType=DECIMAL}, #{freeze,jdbcType=DECIMAL}, #{address,jdbcType=VARCHAR}, 
+      #{financial,jdbcType=DECIMAL}, #{giving,jdbcType=DECIMAL}, #{dongtai,jdbcType=DECIMAL}, 
+      #{truelyBalance,jdbcType=VARCHAR}, #{guijiBalance,jdbcType=VARCHAR}, #{lastBlock,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.itcast.bean.Wallet">
+    insert into wallet
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="tokenId != null">
+        token_id,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="freeze != null">
+        freeze,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="financial != null">
+        financial,
+      </if>
+      <if test="giving != null">
+        giving,
+      </if>
+      <if test="dongtai != null">
+        dongtai,
+      </if>
+      <if test="truelyBalance != null">
+        truely_balance,
+      </if>
+      <if test="guijiBalance != null">
+        guiji_balance,
+      </if>
+      <if test="lastBlock != null">
+        last_block,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="tokenId != null">
+        #{tokenId,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="freeze != null">
+        #{freeze,jdbcType=DECIMAL},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="financial != null">
+        #{financial,jdbcType=DECIMAL},
+      </if>
+      <if test="giving != null">
+        #{giving,jdbcType=DECIMAL},
+      </if>
+      <if test="dongtai != null">
+        #{dongtai,jdbcType=DECIMAL},
+      </if>
+      <if test="truelyBalance != null">
+        #{truelyBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="guijiBalance != null">
+        #{guijiBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="lastBlock != null">
+        #{lastBlock,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.itcast.bean.WalletExample" resultType="java.lang.Long">
+    select count(*) from wallet
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update wallet
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.uid != null">
+        uid = #{record.uid,jdbcType=BIGINT},
+      </if>
+      <if test="record.tokenId != null">
+        token_id = #{record.tokenId,jdbcType=INTEGER},
+      </if>
+      <if test="record.balance != null">
+        balance = #{record.balance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.freeze != null">
+        freeze = #{record.freeze,jdbcType=DECIMAL},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.financial != null">
+        financial = #{record.financial,jdbcType=DECIMAL},
+      </if>
+      <if test="record.giving != null">
+        giving = #{record.giving,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dongtai != null">
+        dongtai = #{record.dongtai,jdbcType=DECIMAL},
+      </if>
+      <if test="record.truelyBalance != null">
+        truely_balance = #{record.truelyBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="record.guijiBalance != null">
+        guiji_balance = #{record.guijiBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastBlock != null">
+        last_block = #{record.lastBlock,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update wallet
+    set id = #{record.id,jdbcType=BIGINT},
+      uid = #{record.uid,jdbcType=BIGINT},
+      token_id = #{record.tokenId,jdbcType=INTEGER},
+      balance = #{record.balance,jdbcType=DECIMAL},
+      freeze = #{record.freeze,jdbcType=DECIMAL},
+      address = #{record.address,jdbcType=VARCHAR},
+      financial = #{record.financial,jdbcType=DECIMAL},
+      giving = #{record.giving,jdbcType=DECIMAL},
+      dongtai = #{record.dongtai,jdbcType=DECIMAL},
+      truely_balance = #{record.truelyBalance,jdbcType=VARCHAR},
+      guiji_balance = #{record.guijiBalance,jdbcType=VARCHAR},
+      last_block = #{record.lastBlock,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itcast.bean.Wallet">
+    update wallet
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="tokenId != null">
+        token_id = #{tokenId,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="freeze != null">
+        freeze = #{freeze,jdbcType=DECIMAL},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="financial != null">
+        financial = #{financial,jdbcType=DECIMAL},
+      </if>
+      <if test="giving != null">
+        giving = #{giving,jdbcType=DECIMAL},
+      </if>
+      <if test="dongtai != null">
+        dongtai = #{dongtai,jdbcType=DECIMAL},
+      </if>
+      <if test="truelyBalance != null">
+        truely_balance = #{truelyBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="guijiBalance != null">
+        guiji_balance = #{guijiBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="lastBlock != null">
+        last_block = #{lastBlock,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itcast.bean.Wallet">
+    update wallet
+    set uid = #{uid,jdbcType=BIGINT},
+      token_id = #{tokenId,jdbcType=INTEGER},
+      balance = #{balance,jdbcType=DECIMAL},
+      freeze = #{freeze,jdbcType=DECIMAL},
+      address = #{address,jdbcType=VARCHAR},
+      financial = #{financial,jdbcType=DECIMAL},
+      giving = #{giving,jdbcType=DECIMAL},
+      dongtai = #{dongtai,jdbcType=DECIMAL},
+      truely_balance = #{truelyBalance,jdbcType=VARCHAR},
+      guiji_balance = #{guijiBalance,jdbcType=VARCHAR},
+      last_block = #{lastBlock,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
